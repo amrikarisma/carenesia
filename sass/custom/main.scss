@@ -1,0 +1,36 @@
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: "Merriweather", serif;
+	color: #212121;
+	font-weight: 700;
+}
+body {
+	font-size: 14px;
+	font-weight: 400;
+}
+.container {
+	max-width: 1300px;
+}
+::selection {
+	background: $primary;
+	color: #fff;
+}
+.btn {
+	border-width: 2px;
+	border-radius: 30px;
+	padding: 14px 35px;
+	line-height: 17px;
+}
+.btn-outline-primary {
+	color: #fff;
+	border-color: #fff;
+}
+
+.btn-secondary {
+	color: black;
+	border-color: #fff;
+	background-color: #fff;
+}
