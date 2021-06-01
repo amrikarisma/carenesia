@@ -1,4 +1,4 @@
-<div class="owl-carousel owl-theme">
+<div class="home-slider owl-carousel owl-theme">
     <div class="item">
         <img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/04/h1-slide-1-background-img.jpg" alt="">
         <div class="slider-wrapper-text">

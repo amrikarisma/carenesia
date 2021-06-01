@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="owl-carousel owl-theme">
+                    <div class="home-planner owl-carousel owl-theme">
                         <div class="item">
                             <img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/h1-img-8.jpg" alt="">
                         </div>

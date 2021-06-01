@@ -1,3 +1,7 @@
+body {
+	font-size: 14px;
+	font-weight: 400;
+}
 h1,
 h2,
 h3,
@@ -7,16 +11,19 @@ h5 {
 	color: #212121;
 	font-weight: 700;
 }
-body {
-	font-size: 14px;
-	font-weight: 400;
-}
+
 .container {
 	max-width: 1300px;
 }
 ::selection {
 	background: $primary;
 	color: #fff;
+}
+article {
+	.entry-content {
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
 }
 .btn {
 	border-width: 2px;
@@ -30,7 +37,12 @@ body {
 }
 
 .btn-secondary {
-	color: black;
+	color: #000;
 	border-color: #fff;
 	background-color: #fff;
+	&:hover {
+		color: #000;
+		border-color: rgb(243, 243, 243);
+		background-color: rgb(243, 243, 243);
+	}
 }

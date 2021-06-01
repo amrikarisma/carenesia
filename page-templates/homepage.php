@@ -20,5 +20,7 @@ get_template_part( 'section-templates/home/home', 'fullwidth' );
 get_template_part( 'section-templates/home/home', 'donation' );
 get_template_part( 'section-templates/home/home', 'fullwidth-counter' );
 get_template_part( 'section-templates/home/home', 'planner' );
+get_template_part( 'section-templates/home/home', 'testimoni' );
+get_template_part( 'section-templates/home/home', 'newsletter' );
 
 get_footer();

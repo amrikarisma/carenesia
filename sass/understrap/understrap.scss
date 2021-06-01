@@ -30,6 +30,24 @@ body {
 	background-color: $gray-200;
 }
 
+#wrapper-footer-full {
+	color: #fff;
+	background-color: #141414;
+	.widget-title {
+		color: #fff;
+		font-size: 18px;
+		line-height: 1.445em;
+	}
+	.footer-widget {
+		ul {
+			padding-left: 20px;
+		}
+	}
+}
+#wrapper-footer {
+	color: #fff;
+	background-color: #000;
+}
 // Necessary WP classes
 .wp-caption {
 	font-size: inherit;
