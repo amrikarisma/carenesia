@@ -42,8 +42,8 @@ if ( post_password_required() ) {
 					esc_html(
 						/* translators: 1: number of comments, 2: post title */
 						_nx(
-							'%1$s thought on &ldquo;%2$s&rdquo;',
-							'%1$s thoughts on &ldquo;%2$s&rdquo;',
+							'%1$s comment',
+							'%1$s comments',
 							$comments_number,
 							'comments title',
 							'understrap'
@@ -86,6 +86,8 @@ if ( post_password_required() ) {
 				array(
 					'style'      => 'ol',
 					'short_ping' => true,
+						'callback' => 'custom_better_commets'
+
 				)
 			);
 			?>

@@ -1,17 +1,49 @@
 body {
+	color: #888;
 	font-size: 14px;
 	font-weight: 400;
+	font-family: 'Open Sans',sans-serif;
+    font-size: 14px;
+    line-height: 26px;
 }
 h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+h6 {
 	font-family: "Merriweather", serif;
 	color: #212121;
 	font-weight: 700;
 }
-
+a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
+    background: 0 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    outline: 0;
+}
+.form-control, .widget_archive select, .widget_categories select, .wpcf7 .wpcf7-validation-errors, .wpcf7 input[type=color], .wpcf7 input[type=date], .wpcf7 input[type=datetime-local], .wpcf7 input[type=datetime], .wpcf7 input[type=email], .wpcf7 input[type=file], .wpcf7 input[type=month], .wpcf7 input[type=number], .wpcf7 input[type=range], .wpcf7 input[type=search], .wpcf7 input[type=submit], .wpcf7 input[type=tel], .wpcf7 input[type=text], .wpcf7 input[type=time], .wpcf7 input[type=url], .wpcf7 input[type=week], .wpcf7 select, .wpcf7 textarea	{
+	width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 19px;
+    border: 1px solid #e1e1e1;
+    outline: 0;
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+    background-color: #f6f4ee;
+    color: #888;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    border-radius: 5px;
+}
+#respond input:focus[type=text], #respond textarea:focus, .post-password-form input:focus[type=password], .wpcf7-form-control.wpcf7-date:focus, .wpcf7-form-control.wpcf7-number:focus, .wpcf7-form-control.wpcf7-quiz:focus, .wpcf7-form-control.wpcf7-select:focus, .wpcf7-form-control.wpcf7-text:focus, .wpcf7-form-control.wpcf7-textarea:focus {
+	border: 1px solid #e0e0e0;
+}
 .container {
 	max-width: 1300px;
 }
@@ -25,6 +57,7 @@ article {
 		padding-bottom: 70px;
 	}
 }
+
 .btn {
 	border-width: 2px;
 	border-radius: 30px;
@@ -44,5 +77,27 @@ article {
 		color: #000;
 		border-color: rgb(243, 243, 243);
 		background-color: rgb(243, 243, 243);
+	}
+}
+
+.social-share-list {
+	.social-share-title {
+		font-family: "Merriweather",serif;
+		font-size: 15px;
+		font-weight: 700;
+		color: #212121;
+		margin-right: 14px;
+		vertical-align: middle;
+	}
+	ul {
+		list-style: none;
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		> li {
+			display: inline-block;
+			margin-right: 18px;
+		}
+
 	}
 }

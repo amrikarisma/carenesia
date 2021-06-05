@@ -22,4 +22,12 @@
         </div>
     </div>
 </section>
+<?php else : ?>
+<section class="header" style="background-image:url('https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/team-parallax-img-1.jpg');    height: 280px;">
+    <div class="wrap-title">
+        <div class="container">
+            <h2 class="title">Donasi</h2>
+        </div>
+    </div>
+</section>
 <?php endif; ?>

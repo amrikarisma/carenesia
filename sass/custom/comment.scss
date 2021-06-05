@@ -1,0 +1,76 @@
+.comments-area {
+    .comment {
+        .comment {
+            display: flex;
+            /* width: 100%; */
+            padding-top: 45px;
+            padding-bottom: 52px;
+            border-bottom: 1px solid #f1f1f1;
+            .wrap-image-comment {
+                display: flex;
+                z-index: 1;
+                display: block;
+                .img-comment-thumbnail {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 100%;
+                    overflow: hidden;
+                }
+            }
+            .comment-block {
+                padding: 0 0 0 20px;
+                min-height: 85px;
+                width: 100%;
+            }
+            .date-comment {
+                display: block;
+                clear: both;
+                margin-bottom: 25px;
+                font-family: Merriweather,serif;
+                font-size: 12px;
+                line-height: 12px;
+                color: $primary;
+            }
+        }
+    }
+    h2.comments-title {
+        padding-top: 30px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 22px;
+        line-height: 1.364em;
+    }
+    ol.comment-list {
+        list-style: none;
+        position: relative;
+        padding: 0;
+        margin-bottom: 70px;
+        padding-top: 0;
+        box-sizing: border-box;
+    }
+    .comment-respond {
+        .comment-reply-title {
+            padding: 20px 0;
+        }
+        .comment-form-author {
+            width: 49%;
+            display: inline-block;
+            margin-right: 0.7%;
+        }
+        .comment-form-email {
+            display: inline-block;
+            width: 49%;
+            margin-left: 1%;
+        }
+        p.form-submit {
+            margin: 0;
+            padding: 0;
+            input[type=submit] {
+                background-color: #ffb422;
+                border: 2px solid #ffb422;
+                color: #fff;
+            }
+        }
+    }
+}

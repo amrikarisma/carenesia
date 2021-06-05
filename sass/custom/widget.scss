@@ -1,0 +1,111 @@
+.widget-area {
+    .widget {
+        margin-bottom: 45px;
+    }
+    h3.widget-title {
+        font-size: 18px;
+        line-height: 1.445em;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        border-bottom: 2px solid $primary;
+        padding: 5px 0;
+        margin: 7px 0 30px;
+    }
+    .widget_search {
+        input#s {
+            // width: calc(100% - 57px);
+            outline: 0;
+            border: 1px solid #e1e1e1;
+            border-radius: 0;
+            line-height: 42px;
+            height: 42px;
+            box-sizing: border-box;
+            padding: 0 37px 0 15px;
+            font-family: Merriweather,serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #888;
+            background-color: #f6f4ee;
+        }
+        
+        input#searchsubmit {
+            margin-left: 10px;
+            height: 42px;
+            padding: 10px 10px;
+            border-radius: 0;
+            &::before {
+                font-family: "FontAwesome";
+                content: "\f002";
+                left:0;
+                position:absolute;
+                top:0;
+            }
+        }
+    }
+    .tagcloud {
+        a {
+            font-family: "Merriweather",serif;
+            color: #888;
+            font-size: 14px!important;
+            display: inline-block;
+            margin-right: 2px;
+            padding: 0 6px;
+            text-transform: capitalize;
+            line-height: 28px;
+            border: 1px solid transparent;
+            -webkit-transition: all .15s ease-out;
+            -moz-transition: all .15s ease-out;
+            transition: all .15s ease-out;
+            background-color: #fff;
+        }
+    }
+    ul {
+        list-style: none;
+        > li {
+            display: table;
+            width: 100%;
+            &:not(:first-child) {
+                padding: 24px 0 0 0;
+            }
+            .widget-thubmnail {
+                position: relative;
+                display: table-cell;
+                height: 100%;
+                vertical-align: middle;
+                text-align: center;
+                width: 110px;
+                padding-right: 17px;
+                img {
+                    max-width: 100px;
+                }
+            }
+            .widget-text {
+                a {
+                    color: #212121;
+                    font-family: "Merriweather",serif;
+                    font-weight: 700;
+                    font-size: 15px;
+                    line-height: 1.333em;
+                    position: relative;
+                    display: table-cell;
+                    height: 100%;
+                    width: 100%;
+                    vertical-align: middle;
+                    text-align: center;
+                    text-align: left;
+                    vertical-align: top;
+                    padding: 0;
+                }
+                span.post-date {
+                    margin-bottom: 15px;
+                    font-size: 12px;
+                    font-family: "Merriweather",serif;
+                    color: $primary;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+}

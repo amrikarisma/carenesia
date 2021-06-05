@@ -1,0 +1,80 @@
+article {
+    .entry-header {
+        padding-top: 30px;
+        h3.entry-title {
+            font-size: 22px;
+            line-height: 1.364em;
+            margin-bottom: 23px;
+        }
+    }
+    
+    .entry-content {
+        // padding-top: 0;
+        padding-bottom: 30px;
+        p {
+            margin-bottom: 25px;
+        }
+        .wp-block-column {
+            ul {
+                list-style-type: none;
+            }
+            ul > li {
+                padding-left: 26px;
+                padding-bottom: 9px;
+                position: relative;
+                font-family: inherit;
+                &::before {
+                    height: 5px;
+                    width: 5px;
+                    display: inline-block;
+                    position: absolute;
+                    left: 0;
+                    top: 10.5px;
+                    padding: 0;
+                    background-color: $primary;
+                    text-align: center;
+                    content: '';
+                }
+            }
+        }
+    }
+
+}
+
+.single-donasi {
+    article {
+        .entry-content {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+    .wrap-featured-iamge img {
+        width: 100%;
+        margin-bottom: 18px;
+    }
+    .wrapper-progress {
+        padding: 22px 25px 34px;
+        background-color: #f6f4ee;
+        .progress-persentase {
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+        .progress {
+            height: 5px;
+        }
+        .progress-wrap-nominal {
+            padding: 10px 0;
+            h6 {
+                color: #888;
+                display: inline-block;
+            }
+            span {
+                color: #000;
+                font-weight: 700;
+                font-family: "Merriweather",serif;
+            }
+        }
+    }
+}

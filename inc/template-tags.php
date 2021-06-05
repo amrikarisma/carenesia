@@ -73,15 +73,15 @@ if ( ! function_exists( 'understrap_entry_footer' ) ) {
 			comments_popup_link( esc_html__( 'Leave a comment', 'understrap' ), esc_html__( '1 Comment', 'understrap' ), esc_html__( '% Comments', 'understrap' ) );
 			echo '</span>';
 		}
-		edit_post_link(
-			sprintf(
-				/* translators: %s: Name of current post */
-				esc_html__( 'Edit %s', 'understrap' ),
-				the_title( '<span class="sr-only">"', '"</span>', false )
-			),
-			'<span class="edit-link">',
-			'</span>'
-		);
+		// edit_post_link(
+		// 	sprintf(
+		// 		/* translators: %s: Name of current post */
+		// 		esc_html__( 'Edit %s', 'understrap' ),
+		// 		the_title( '<span class="sr-only">"', '"</span>', false )
+		// 	),
+		// 	'<span class="edit-link">',
+		// 	'</span>'
+		// );
 	}
 }
 

@@ -172,3 +172,26 @@ if ( ! function_exists( 'understrap_widgets_init' ) ) {
 
 	}
 } // End of function_exists( 'understrap_widgets_init' ).
+
+function cptw_hooks_setup() {
+	add_action( 'custom_post_type_widgets/recent_posts/widget/prepend', 'cptw_recent_posts_prepend', 10, 4 );
+	add_action( 'custom_post_type_widgets/recent_posts/widget/append', 'cptw_recent_posts_append', 10, 4 );
+  }
+  add_action( 'after_setup_theme', 'cptw_hooks_setup' );
+  
+  function cptw_recent_posts_prepend( $widget_id, $posttype, $instance, $recent_post ) {
+	if ( has_post_thumbnail( $recent_post ) ) : ?>
+		<div class="widget-thubmnail">
+			<?php echo get_the_post_thumbnail( $recent_post ); ?>
+		</div>
+		<div class="widget-text">
+		<?php
+	endif;
+  }
+
+  function cptw_recent_posts_append( $widget_id, $posttype, $instance, $recent_post ) {
+	if ( has_post_thumbnail( $recent_post ) ) : ?>
+		</div>
+	<?php
+	endif;
+  }
