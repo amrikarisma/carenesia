@@ -15,56 +15,38 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header();
-
 $container = get_theme_mod( 'understrap_container_type' );
 ?>
+<section class="header" style="background-image:url('https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/team-parallax-img-1.jpg');    height: 280px;">
+	<div class="wrap-title">
+		<div class="container">
+			<h2 class="title"><?php the_title(); ?></h2>
+		</div>
+	</div>
+</section>
+<?php 
+while ( have_posts() ) :
+	the_post(); ?>
 
-<?php if ( is_front_page() && is_home() ) : ?>
-	<?php get_template_part( 'global-templates/hero' ); ?>
-<?php endif; ?>
+<div class="wrapper" id="single-wrapper">
 
-<div class="wrapper" id="index-wrapper">
-
-	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
-
-		<div class="row">
-
-			<!-- Do the left sidebar check and opens the primary div -->
-			<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
+	<div id="content" tabindex="-1">
 
 			<main class="site-main" id="main">
+					<?php
 
-				<?php
-				if ( have_posts() ) {
-					// Start the Loop.
-					while ( have_posts() ) {
-						the_post();
-
-						/*
-						 * Include the Post-Format-specific template for the content.
-						 * If you want to override this in a child theme, then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
 						get_template_part( 'loop-templates/content', get_post_format() );
-					}
-				} else {
-					get_template_part( 'loop-templates/content', 'none' );
-				}
-				?>
+					
+					?>
 
 			</main><!-- #main -->
-
 			<!-- The pagination component -->
 			<?php understrap_pagination(); ?>
 
-			<!-- Do the right sidebar check -->
-			<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
-
-		</div><!-- .row -->
-
 	</div><!-- #content -->
 
-</div><!-- #index-wrapper -->
+</div><!-- #single-wrapper -->
 
 <?php
+endwhile;
 get_footer();

@@ -1,4 +1,8 @@
 article {
+    .wrap-featured-iamge img {
+        width: 100%;
+        margin-bottom: 18px;
+    }
     .entry-header {
         padding-top: 30px;
         h3.entry-title {
@@ -48,10 +52,7 @@ article {
             padding-bottom: 0;
         }
     }
-    .wrap-featured-iamge img {
-        width: 100%;
-        margin-bottom: 18px;
-    }
+
     .wrapper-progress {
         padding: 22px 25px 34px;
         background-color: #f6f4ee;
