@@ -12,17 +12,19 @@
                 <?php for ($i=0; $i < 16; $i++) : ?> 
                     <div class="col-md-2 col-lg-3">
                         <div class="member-item-box">
-                            <div class="wrap-image">
-                                <img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/team-image-1-1.jpg" alt="">
-                            </div>
-                            <div class="wrap-text">
-                                <h4 class="name">
-                                Barbara Maddox
-                                </h4>
-                                <div class="position">
-                                Volunteer
+                            <a href="#">
+                                <div class="wrap-image">
+                                    <img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/team-image-1-1.jpg" alt="">
                                 </div>
-                            </div>
+                                <div class="wrap-text">
+                                    <h4 class="name">
+                                    Barbara Maddox
+                                    </h4>
+                                    <div class="position">
+                                    Volunteer
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 <?php endfor; ?>

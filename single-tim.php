@@ -23,29 +23,19 @@ while ( have_posts() ) :
 </section>
 <div class="wrapper" id="single-wrapper">
 
-	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
-
-		<div class="row">
-
-			<!-- Do the left sidebar check -->
-			<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
+	<div id="content" tabindex="-1">
 
 			<main class="site-main" id="main">
 					<?php
 					
-						get_template_part( 'loop-templates/content', 'donasi-single' );
-						get_template_part( 'loop-templates/meta', 'share' );
+						get_template_part( 'loop-templates/content', 'tim-single' );
+						// get_template_part( 'loop-templates/meta', 'share' );
 						understrap_post_nav();
 
 
 					?>
 
 			</main><!-- #main -->
-
-			<!-- Do the right sidebar check -->
-			<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
-
-		</div><!-- .row -->
 
 	</div><!-- #content -->
 	<div class="<?php echo esc_attr( $container ); ?>">

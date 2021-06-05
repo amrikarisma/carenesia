@@ -78,3 +78,61 @@ article {
         }
     }
 }
+
+.single-tim {
+    .wrap-featured-iamge {
+        margin-bottom: 35px;
+    }
+    .additional-info {
+        .wrap-additional-info-title {
+            margin-bottom: 35px;
+        }
+        .wrap-additional-content {
+            margin-bottom: 35px;
+        }
+        .wrapper-progress {
+            margin-bottom: 15px;
+            overflow: hidden;
+            .progress-persentase {
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+                margin: 8px 0;
+                color: #888;
+                h6 {
+                    position: absolute;
+                    -webkit-transform: translateX(-100%);
+                    -moz-transform: translateX(-100%);
+                    transform: translateX(-100%);
+                    bottom: 0;
+                }
+            }
+            .progress {
+                height: 5px;
+            }
+        }
+    }
+    .tim-contact-detail {
+        .wrap-title-contact-detail {
+            margin-bottom: 50px;
+        }
+        h3 {
+            font-size: 22px;
+            line-height: 1.364em;
+        }
+        h5 {
+            font-size: 15px;
+            line-height: 1.333em;
+        }
+        .list-contact-item {
+            margin-bottom: 10px;
+        }
+    }
+    .wrapper-tim-gallery {
+        padding:135px 0px 105px 0px;
+        background-color: #F6F4EE;
+    }
+    #single-wrapper {
+        padding-bottom: 0;
+    }
+}

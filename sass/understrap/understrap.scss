@@ -1,12 +1,16 @@
 body {
 	font-family: "Open Sans", sans-serif;
 }
-
+.site-main {
+	margin: auto;
+}
 // Some basic padding for all wrappers
 .wrapper {
 	padding: $grid-gutter-width 0;
 }
-
+#single-wrapper {
+	padding-top: 70px;
+}
 // Reset hero wrapper padding to 0
 #wrapper-hero {
 	padding: 0px !important;
