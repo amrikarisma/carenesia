@@ -17,7 +17,7 @@
                             $args = array(  
                                 'post_type' => 'donasi',
                                 'post_status' => 'publish',
-                                'posts_per_page' => 2, 
+                                'posts_per_page' => 8, 
                                 'paged' => get_query_var( 'paged' ),
                                 'orderby' => 'title', 
                                 'order' => 'ASC', 
@@ -29,16 +29,15 @@
             
                                 <div class="col-md-6 col-lg-6">
                                     <div class="member-item-box">
-                                        <a href="#">
+                                        <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
                                             <div class="wrap-image">
-                                                <a href="<?php the_permalink(); ?>">
-                                                    <?php echo get_the_post_thumbnail( $donasi->ID, 'large' ); ?>
-                                                </a>
+                                                <?php echo get_the_post_thumbnail( $donasi->ID, 'large' ); ?>
+                                                <div class="overlay-thumbnail">
+                                                    <i class="fa fa-link" aria-hidden="true"></i>
+                                                </div>
                                             </div>
                                             <div class="wrap-text">
-                                                <a href="<?php the_permalink(); ?>">
-                                                    <?php the_title( '<h4 class="name">', '</h4>' ); ?>
-                                                </a>
+                                                <?php the_title( '<h4 class="name">', '</h4>' ); ?>
                                         
                                                 <div class="position">
                                                 <?php the_category( ', ' ); ?>
@@ -53,9 +52,6 @@
                             wp_reset_postdata(); 
                 ?>
             </div>
-            <?php
-            //wp_die($donasi->max_num_pages);
-            ?>
 
         </div>
         <div class="wrap-pagination">

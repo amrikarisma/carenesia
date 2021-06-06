@@ -15,7 +15,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 	<div class="<?php echo esc_attr( $container ); ?>">
 
 		<div class="wrap-image-blog-list">
-			<a href="<?php  _e( get_permalink() ) ?>" rel="bookmark">'
+			<a href="<?php the_permalink() ?>" rel="bookmark">
 				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 			</a>
 		</div>
