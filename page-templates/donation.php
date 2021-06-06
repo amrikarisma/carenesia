@@ -13,11 +13,11 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-get_template_part( 'section-templates/general/general', 'header' );
-get_template_part( 'section-templates/donation/donation', 'list' );
 
 while ( have_posts() ) :
 	the_post();
+	get_template_part( 'section-templates/general/general', 'header' );
+	get_template_part( 'section-templates/donation/donation', 'list' );
 	get_template_part( 'loop-templates/content', 'container' );
 endwhile;
 
