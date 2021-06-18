@@ -1,7 +1,17 @@
 article {
-    .wrap-featured-iamge img {
-        width: 100%;
+    .wrap-featured-iamge {
+        position: relative;
         margin-bottom: 18px;
+        img {
+            width: 100%;
+        }
+        .wrap-donation-btn {
+            position: absolute;
+            bottom: 0;
+            padding: 28px;
+            width: 100%;
+            background-color: rgba(0,0,0,.53);
+        }
     }
     .entry-header {
         padding-top: 30px;
@@ -11,6 +21,7 @@ article {
             margin-bottom: 23px;
         }
     }
+
     blockquote {
         position: relative;
         display: table;
@@ -151,4 +162,8 @@ article {
     #single-wrapper {
         padding-bottom: 0;
     }
+}
+
+.social-share-list {
+    margin-bottom: 20px;
 }

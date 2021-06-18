@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single post partial template
  *
@@ -6,14 +7,17 @@
  */
 
 // Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 ?>
 
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
 	<div class="wrap-featured-iamge">
-		<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+		<?php echo get_the_post_thumbnail($post->ID, 'large'); ?>
+		<div class="wrap-donation-btn">
+			<button class="btn btn-primary">Donate</button>
+		</div>
 	</div>
 	<div class="wrapper-progress">
 		<div class="progress-persentase">
@@ -33,11 +37,12 @@ defined( 'ABSPATH' ) || exit;
 	</div>
 	<header class="entry-header">
 
-		<?php the_title( '<h3 class="entry-title">', '</h3>' ); ?>
+		<?php the_title('<h3 class="entry-title">', '</h3>'); ?>
 
 		<div class="entry-meta">
 
-			<?php //understrap_posted_on(); ?>
+			<?php //understrap_posted_on(); 
+			?>
 
 		</div><!-- .entry-meta -->
 
@@ -49,7 +54,7 @@ defined( 'ABSPATH' ) || exit;
 		<?php
 		wp_link_pages(
 			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),
+				'before' => '<div class="page-links">' . __('Pages:', 'understrap'),
 				'after'  => '</div>',
 			)
 		);
