@@ -2,7 +2,7 @@ section {
 	&.banner {
 		.wrapper-banner-text {
 			h3.title {
-				color: #ffffff;
+				color: $lightColor;
 				margin-bottom: 30px;
 				font-size: 25px;
 				line-height: 1.2em;
@@ -34,7 +34,7 @@ section {
 		.about-header {
 			text-align: center;
 			.tagline {
-				color: #888888;
+				color: $greyColor;
 				font-size: 18px;
 				line-height: 30px;
 			}
@@ -59,12 +59,12 @@ section {
 			top: 50%;
 			transform: translate(0, -50%);
 			h2 {
-				color: #fff;
+				color: $lightColor;
 				padding-top: 30px;
 				padding-bottom: 30px;
 			}
 			p {
-				color: #fff;
+				color: $lightColor;
 			}
 			button {
 				margin-top: 20px;
@@ -77,7 +77,7 @@ section {
 		.donation-header {
 			text-align: center;
 			.tagline {
-				color: #888888;
+				color: $greyColor;
 				font-size: 18px;
 				line-height: 30px;
 			}
@@ -86,7 +86,7 @@ section {
 			padding-top: 30px;
 			.wrap-donation-text {
 				font-size: 14px;
-				background-color: #f6f4ee;
+				background-color: $softlightColor;
 				padding: 30px 36px 44px;
 				box-sizing: border-box;
 				.category {
@@ -113,7 +113,7 @@ section {
 		padding-top: 70px;
 		padding-bottom: 70px;
 		.wrap-counter {
-			color: #fff;
+			color: $lightColor;
 			text-align: center;
 			padding: 30px 10px;
 			.count {
@@ -166,10 +166,10 @@ section {
 					}
 				}
 				h2 {
-					color: #fff;
+					color: $lightColor;
 				}
 				p {
-					color: #fff;
+					color: $lightColor;
 				}
 			}
 		}
@@ -178,14 +178,14 @@ section {
 		padding-top: 70px;
 		padding-bottom: 70px;
 		.box-testimoni-text {
-			background-color: #fff;
+			background-color: $lightColor;
 			padding: 40px 30px;
 			.testimoni-title {
 				font-size: 18px;
 				line-height: 1.445em;
 			}
 			.testimoni-text {
-				color: #888888;
+				color: $greyColor;
 			}
 		}
 		.testimonial-arrow {
@@ -209,7 +209,7 @@ section {
 				}
 				.author-from {
 					font-family: Merriweather, serif;
-					color: #ffb422;
+					color: $primary;
 					line-height: 30px;
 				}
 			}
@@ -218,9 +218,9 @@ section {
 	&.newsletter {
 		padding-top: 70px;
 		padding-bottom: 70px;
-		background-color: #9fcf5d;
+		background-color: $secondary;
 		h2 {
-			color: #fff;
+			color: $lightColor;
 		}
 	}
 	&.member {
@@ -267,6 +267,13 @@ section {
 		}
 	}
 	&.header {
+		&.no-bg-header {
+			.wrap-title {
+				h2.title {
+					color: $darkColor;
+				}
+			}
+		}
 		.wrap-title {
 			display: flex;
 			height: 100%;
@@ -274,7 +281,7 @@ section {
 			/* align-self: center; */
 			align-items: center;
 			h2.title {
-				color: #fff;
+				color: $lightColor;
 				font-size: 25px;
 			}
 		}

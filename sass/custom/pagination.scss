@@ -1,0 +1,39 @@
+.wrap-pagination {
+    background-color: #f6f4ee;
+    padding: 35px 0;
+    .pagination {
+        justify-content:  center;
+        .page-item {
+            position: relative;
+            display: inline-block;
+            padding: 0 13px;
+            margin: 0;
+            vertical-align: middle;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            font-family: "Merriweather",serif;
+            cursor: pointer;
+            white-space: nowrap;
+            box-sizing: content-box;
+            color: $darkColor;
+            &.active {
+                .page-link {
+                    z-index: 3;
+                    color: $otherGreyColor;
+                    background-color: transparent;
+                }
+            }
+            .page-link {
+                position: relative;
+                display: block;
+                padding: .5rem .75rem;
+                margin-left: -1px;
+                line-height: 1.25;
+                color: $darkColor;
+                background-color: transparent;
+                border: none;
+            }
+        }
+    }
+}

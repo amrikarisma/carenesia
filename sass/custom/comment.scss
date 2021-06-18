@@ -1,35 +1,37 @@
 .comments-area {
-    .comment {
-        .comment {
-            display: flex;
-            /* width: 100%; */
-            padding-top: 45px;
-            padding-bottom: 52px;
-            border-bottom: 1px solid #f1f1f1;
-            .wrap-image-comment {
+    .comment-list {
+        li.comment {
+            > .comment {
                 display: flex;
-                z-index: 1;
-                display: block;
-                .img-comment-thumbnail {
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 100%;
-                    overflow: hidden;
+                /* width: 100%; */
+                padding-top: 45px;
+                padding-bottom: 52px;
+                border-bottom: 1px solid #f1f1f1;
+                .wrap-image-comment {
+                    display: flex;
+                    z-index: 1;
+                    display: block;
+                    .img-comment-thumbnail {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 100%;
+                        overflow: hidden;
+                    }
                 }
-            }
-            .comment-block {
-                padding: 0 0 0 20px;
-                min-height: 85px;
-                width: 100%;
-            }
-            .date-comment {
-                display: block;
-                clear: both;
-                margin-bottom: 25px;
-                font-family: Merriweather,serif;
-                font-size: 12px;
-                line-height: 12px;
-                color: $primary;
+                .comment-block {
+                    padding: 0 0 0 20px;
+                    min-height: 85px;
+                    width: 100%;
+                }
+                .date-comment {
+                    display: block;
+                    clear: both;
+                    margin-bottom: 25px;
+                    font-family: Merriweather,serif;
+                    font-size: 12px;
+                    line-height: 12px;
+                    color: $primary;
+                }
             }
         }
     }
@@ -41,13 +43,17 @@
         font-size: 22px;
         line-height: 1.364em;
     }
-    ol.comment-list {
+    ol {
         list-style: none;
         position: relative;
         padding: 0;
-        margin-bottom: 70px;
         padding-top: 0;
         box-sizing: border-box;
+        &.children {
+            > .comment {
+                padding-left: 110px;
+            }
+        }
     }
     .comment-respond {
         .comment-reply-title {
