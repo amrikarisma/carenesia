@@ -16,7 +16,7 @@ defined('ABSPATH') || exit;
 	<div class="wrap-featured-iamge">
 		<?php echo get_the_post_thumbnail($post->ID, 'large'); ?>
 		<div class="wrap-donation-btn">
-			<button class="btn btn-primary">Donate</button>
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalDonation">Donate</button>
 		</div>
 	</div>
 	<div class="wrapper-progress">
@@ -69,3 +69,24 @@ defined('ABSPATH') || exit;
 	</footer><!-- .entry-footer -->
 
 </article><!-- #post-## -->
+
+<!-- Modal -->
+<div class="modal-donation modal fade" id="modalDonation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
