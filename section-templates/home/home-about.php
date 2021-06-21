@@ -10,7 +10,7 @@
             <div class="row">
                 <?php foreach (get_field('banner')['item'] ?? [] as $banner) : ?>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-4">
                         <div class="wrap-about-image">
                             <img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/h1-img-4.jpg" alt="">
                         </div>

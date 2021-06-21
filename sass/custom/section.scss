@@ -55,9 +55,11 @@ section {
 		padding-top: 70px;
 		padding-bottom: 70px;
 		.wrap-fullwidth-text {
-			position: absolute;
-			top: 50%;
-			transform: translate(0, -50%);
+			@media (min-width: 768px) {
+				position: absolute;
+				top: 50%;
+				transform: translate(0, -50%);
+			}
 			h2 {
 				color: $lightColor;
 				padding-top: 30px;
@@ -151,10 +153,9 @@ section {
 					height: 415px;
 				}
 				.inner-text-planner {
-					position: absolute;
-					top: 50%;
-					right: 50%;
-					transform: translate(50%, -50%);
+					@media (max-width: 767px) {
+						padding: 30px 20px;
+					}
 					@media (min-width: 1200px) {
 						width: 50%;
 					}
@@ -162,7 +163,14 @@ section {
 						width: 80%;
 					}
 					@media (min-width: 768px) {
+						position: absolute;
+						top: 50%;
+						right: 50%;
+						transform: translate(50%, -50%);
 						width: 80%;
+					}
+					.wrapper-content-planner {
+						margin-bottom: 15px;
 					}
 				}
 				h2 {

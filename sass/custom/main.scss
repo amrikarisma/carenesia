@@ -37,7 +37,13 @@ a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, ci
     vertical-align: baseline;
     outline: 0;
 }
-.form-control, .widget_archive select, .widget_categories select, .wpcf7 .wpcf7-validation-errors, .wpcf7 input[type=color], .wpcf7 input[type=date], .wpcf7 input[type=datetime-local], .wpcf7 input[type=datetime], .wpcf7 input[type=email], .wpcf7 input[type=file], .wpcf7 input[type=month], .wpcf7 input[type=number], .wpcf7 input[type=range], .wpcf7 input[type=search], .wpcf7 input[type=submit], .wpcf7 input[type=tel], .wpcf7 input[type=text], .wpcf7 input[type=time], .wpcf7 input[type=url], .wpcf7 input[type=week], .wpcf7 select, .wpcf7 textarea	{
+.form-control, 
+.widget_archive select, 
+.widget_categories select, 
+.wpcf7 
+.wpcf7-validation-errors, 
+.wpcf7 input[type=color], 
+.wpcf7 input[type=date], .wpcf7 input[type=datetime-local], .wpcf7 input[type=datetime], .wpcf7 input[type=email], .wpcf7 input[type=file], .wpcf7 input[type=month], .wpcf7 input[type=number], .wpcf7 input[type=range], .wpcf7 input[type=search], .wpcf7 input[type=submit], .wpcf7 input[type=tel], .wpcf7 input[type=text], .wpcf7 input[type=time], .wpcf7 input[type=url], .wpcf7 input[type=week], .wpcf7 select, .wpcf7 textarea	{
 	width: 100%;
     margin-bottom: 20px;
     padding: 15px 19px;
@@ -53,6 +59,9 @@ a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, ci
     vertical-align: middle;
     -webkit-appearance: none;
     border-radius: 5px;
+}
+select.form-control {
+    padding: 5px 20px;
 }
 #respond input:focus[type=text], #respond textarea:focus, .post-password-form input:focus[type=password], .wpcf7-form-control.wpcf7-date:focus, .wpcf7-form-control.wpcf7-number:focus, .wpcf7-form-control.wpcf7-quiz:focus, .wpcf7-form-control.wpcf7-select:focus, .wpcf7-form-control.wpcf7-text:focus, .wpcf7-form-control.wpcf7-textarea:focus {
 	border: 1px solid #e0e0e0;
