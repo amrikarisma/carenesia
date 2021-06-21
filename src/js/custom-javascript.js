@@ -6,7 +6,8 @@ jQuery(function($) {
         nav:true,
         responsive:{
             0:{
-                items:1
+                items:1,
+                height:400
             }
         }
     });

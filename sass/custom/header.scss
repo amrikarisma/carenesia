@@ -7,7 +7,15 @@
 .dark-transparant {
 	background-color: rgba(0, 0, 0, 0.59);
 }
-
+.home-slider {
+	.owl-item img {
+		@media (max-width: 767px) {
+			max-width: initial;
+			width: auto;
+			height: 480px;
+		}
+	}
+}
 .slider-wrapper-text {
 	position: absolute;
 	top: calc(100vw / 10);
@@ -26,6 +34,9 @@
 		font-size: 63px;
 		font-weight: 700;
 		padding: 15px 10px;
+		@media (max-width: 767px) {
+			font-size: 30px;
+		}
 	}
 	.caption {
 		font-size: 17px;

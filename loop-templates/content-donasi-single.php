@@ -74,18 +74,58 @@ defined('ABSPATH') || exit;
 <div class="modal-donation modal fade" id="modalDonation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
 			<div class="modal-body">
-				...
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<div class="wrap-close-btn">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="wrap-donation-content">
+					<form action="" method="post">
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text">IDR</div>
+							</div>
+							<input type="number" class="form-control" name="nominal" id="nominal">
+						</div>
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<label for="first_name">First name</label>
+								<input type="text" class="form-control" id="first_name" placeholder="First name" value="" required>
+								<div class="valid-feedback">
+									Looks good!
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="last_name">Last name</label>
+								<input type="text" class="form-control" id="last_name" placeholder="Last name" value="" required>
+								<div class="valid-feedback">
+									Looks good!
+								</div>
+							</div>
+							<div class="col-md-12 mb-3">
+								<label for="email">Email Address</label>
+								<input type="email" class="form-control" id="email" placeholder="Email Address" value="" required>
+								<div class="valid-feedback">
+									Looks good!
+								</div>
+							</div>
+							<div class="col-md-12 mb-3">
+								<select class="form-control" name="va_banks" id="va_banks">
+
+									<?php
+									$getVABanks = \Xendit\VirtualAccounts::getVABanks();
+									foreach ($getVABanks as $va) : ?>
+										<option value="<?php echo $va['code']; ?>"><?php echo $va['name']; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+						<div class="wrap-donate-btn">
+							<button type="submit" class="btn btn-primary">Donate Now</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
