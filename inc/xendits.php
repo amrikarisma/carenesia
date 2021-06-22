@@ -24,15 +24,3 @@ class Xendit_PG
 
 
 $pg = new Xendit_PG();
-
-
-
-// $params = [
-//     "external_id" => "VA_fixed-12341234",
-//     "bank_code" => "MANDIRI",
-//     "name" => "Steve Wozniak"
-// ];
-
-// $createVA = \Xendit\VirtualAccounts::create($params);
-// print_r($createVA);
-// die();

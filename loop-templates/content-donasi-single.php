@@ -81,7 +81,7 @@ defined('ABSPATH') || exit;
 					</button>
 				</div>
 				<div class="wrap-donation-content">
-					<form action="" method="post">
+					<form action="/pembayaran/" method="post">
 						<div class="input-group mb-2">
 							<div class="input-group-prepend">
 								<div class="input-group-text">IDR</div>
@@ -91,14 +91,14 @@ defined('ABSPATH') || exit;
 						<div class="form-row">
 							<div class="col-md-6 mb-3">
 								<label for="first_name">First name</label>
-								<input type="text" class="form-control" id="first_name" placeholder="First name" value="" required>
+								<input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name" value="" required>
 								<div class="valid-feedback">
 									Looks good!
 								</div>
 							</div>
 							<div class="col-md-6 mb-3">
 								<label for="last_name">Last name</label>
-								<input type="text" class="form-control" id="last_name" placeholder="Last name" value="" required>
+								<input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last name" value="" required>
 								<div class="valid-feedback">
 									Looks good!
 								</div>
