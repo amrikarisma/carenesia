@@ -66,6 +66,9 @@ select.form-control {
 #respond input:focus[type=text], #respond textarea:focus, .post-password-form input:focus[type=password], .wpcf7-form-control.wpcf7-date:focus, .wpcf7-form-control.wpcf7-number:focus, .wpcf7-form-control.wpcf7-quiz:focus, .wpcf7-form-control.wpcf7-select:focus, .wpcf7-form-control.wpcf7-text:focus, .wpcf7-form-control.wpcf7-textarea:focus {
 	border: 1px solid #e0e0e0;
 }
+ul.post-categories {
+    list-style: none;
+}
 .container {
 	max-width: 1300px;
 }
