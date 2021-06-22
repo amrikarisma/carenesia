@@ -16,8 +16,8 @@ use Xendit\Xendit;
 defined('ABSPATH') || exit;
 
 
-if ($_GET['va'] == 'paid') {
-    return $_GET;
+if (isset($_GET['va']) && $_GET['va'] == 'paid') {
+    return $_POST;
 }
 
 
