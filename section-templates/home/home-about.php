@@ -8,15 +8,20 @@
     <div class="wrap-list-about">
         <div class="container">
             <div class="row">
-                <?php foreach (get_field('banner')['item'] ?? [] as $banner) : ?>
+                <!-- <pre> -->
+                <?php
+                // print_r(get_field('who_we_are'));
+                // die();
+
+                foreach (get_field('who_we_are')['list'] ?? [] as $list) : ?>
 
                     <div class="col-md-4 mb-4">
                         <div class="wrap-about-image">
-                            <img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/h1-img-4.jpg" alt="">
+                            <img src="<?php echo $list['image']['url']; ?>" alt="<?php echo $list['title']; ?>">
                         </div>
                         <div class="wrap-about-text">
-                            <h2>Places To Get Lost</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam blandit hendrerit faucibus. Suspendisse hendrerit turpis dui, eget ultricies erat consequat ut. Sed ac velit iaculis, condimentum neqlu.</p>
+                            <h2><?php echo $list['title']; ?></h2>
+                            <p><?php echo $list['description']; ?></p>
                         </div>
                     </div>
 

@@ -28,10 +28,10 @@ defined('ABSPATH') || exit;
 		</div>
 		<div class="progress-wrap-nominal">
 			<div class="float-left">
-				<h6>Raised:</h6> <span>$1 billion</span>
+				<h6>Raised:</h6> <span>Rp. 1.240.000</span>
 			</div>
 			<div class="float-right">
-				<h6>Goal:</h6> <span>$1,000</span>
+				<h6>Goal:</h6> <span>Rp. 10.000.000</span>
 			</div>
 		</div>
 	</div>

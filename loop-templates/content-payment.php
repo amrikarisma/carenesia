@@ -50,6 +50,7 @@ defined('ABSPATH') || exit;
                     <td>:</td>
                     <td><?php echo $args['account_number'] ?></td>
                 </tr>
+
                 <tr>
                     <td>Nominal</td>
                     <td>:</td>
@@ -60,9 +61,12 @@ defined('ABSPATH') || exit;
                     <td>:</td>
                     <td><?php echo $args['expiration_date'] ?></td>
                 </tr>
+                <tr>
+                    <td>External ID</td>
+                    <td>:</td>
+                    <td><?php echo $args['external_id'] ?></td>
+                </tr>
             </table>
-
-            <?php var_dump($args); ?>
 
         </div><!-- .entry-content -->
     </div>
