@@ -17,7 +17,6 @@ defined('ABSPATH') || exit;
 
 
 if (isset($_GET['va']) && $_GET['va'] == 'paid') {
-    var_dump($_GET);
     var_dump($_POST);
     die();
     return;
