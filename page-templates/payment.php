@@ -15,12 +15,16 @@ use Xendit\Xendit;
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 
-
 if (isset($_GET['va']) && $_GET['va'] == 'paid') {
-    wp_send_json($_POST);
-    die();
-    return;
+
+    return 'paid';
 }
+
+if (isset($_GET['va']) && $_GET['va'] == 'created') {
+
+    return 'created';
+}
+
 
 
 $nominal = $_POST['nominal'];

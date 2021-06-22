@@ -44,3 +44,23 @@ if (class_exists('Jetpack')) {
 foreach ($understrap_includes as $file) {
 	require_once $understrap_inc_dir . $file;
 }
+add_action('rest_api_init', 'my_register_route');
+
+function my_register_route()
+{
+	register_rest_route(
+		'my-route',
+		'my-phrase',
+		array(
+			'methods' => 'GET,POST',
+			'callback' => 'custom_phrase',
+		)
+	);
+}
+
+function custom_phrase(WP_REST_Request $request)
+{
+	$body = $request->get_body_params();
+
+	return $body;
+}
