@@ -15,14 +15,19 @@ use Xendit\Xendit;
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 
-if (isset($_GET['va']) && $_GET['va'] == 'paid') {
 
-    return 'paid';
+$json = file_get_contents('php://input');
+
+if (isset($_GET['va']) && $_GET['va'] == 'paid') {
+    header('Content-Type: application/json');
+    echo $json;
+    return;
 }
 
 if (isset($_GET['va']) && $_GET['va'] == 'created') {
-
-    return 'created';
+    header('Content-Type: application/json');
+    echo $json;
+    return;
 }
 
 
