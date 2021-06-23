@@ -8,7 +8,11 @@
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
-$persentase = number_format(((int)get_donation('total', $post->ID) ?? 0 / (int)get_field('donation_goals') ?? 0 * 100), 2, '.', '');
+if ((int)get_donation('total', $post->ID)) {
+	$persentase = number_format((((int)get_donation('total', $post->ID) ?? 0) / ((int)get_field('donation_goals') ?? 0) * 100), 2, '.', '');
+} else {
+	$persentase = 0;
+}
 ?>
 
 
