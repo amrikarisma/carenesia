@@ -9,8 +9,8 @@
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 
-$current_db_version = 1.1;
-$installed_db_version = get_option('db_transactions_version', 0);
+$current_db_version = 1;
+$installed_db_version = (int)get_option('db_transactions_version', 0);
 
 if ($current_db_version > $installed_db_version) {
     app_create_transactions_db();
