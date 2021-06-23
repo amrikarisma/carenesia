@@ -14,33 +14,40 @@
                     'posts_per_page' => 10,
                 );
                 $loop = new WP_Query($args);
-                while ($loop->have_posts()) {
+                while ($loop->have_posts()) :
                     $loop->the_post();
+                    $persentase = number_format(((int)get_donation('total', get_the_ID()) ?? 0 / (int)get_field('donation_goals', get_the_ID()) ?? 0 * 100), 2, '.', '');
+
                 ?>
                     <div class="col-md-4 mb-4">
-                        <div class="wrap-donation-image">
-                            <?php the_post_thumbnail(); ?>
-                        </div>
-                        <div class="wrap-donation-text">
-                            <div class="category"><?php the_category(); ?></div>
-                            <h2><?php the_title(); ?></h2>
-                            <p><?php the_excerpt(); ?></p>
-                            <div class="wrap-progress-bar">
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                        <a class="list-donation-box" href="<?php the_permalink(); ?>">
+                            <div class="wrap-donation-image">
+                                <?php the_post_thumbnail(); ?>
+                            </div>
+                            <div class="wrap-donation-text">
+                                <div class="category">
+                                    <?php
+                                    // to display categories without a link
+                                    foreach ((get_the_category()) as $category) {
+                                        echo $category->cat_name . ' ';
+                                    }
+                                    ?>
                                 </div>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <div>Raised: <strong>Rp. 123.000</strong></div>
-                                    <div>Goal: <strong>Rp. 15.000.000</strong></div>
+                                <h2><?php the_title(); ?></h2>
+                                <p><?php the_excerpt(); ?></p>
+                                <div class="wrap-progress-bar">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo $persentase ?>%" aria-valuenow="<?php echo $persentase ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <div>Raised: <strong>Rp. <?php echo number_format(get_donation('total', $post->ID) ?? 0, 0, ',', '.'); ?></strong></div>
+                                        <div>Goal: <strong>Rp. <?php echo number_format(get_field('donation_goals') ?? 0, 0, ',', '.'); ?></strong></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                <?php
-                }
-
-                ?>
-
+                <?php endwhile; ?>
 
             </div>
         </div>
