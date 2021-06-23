@@ -9,6 +9,7 @@
  * @package UnderStrap
  */
 
+use SimpleSoftwareIO\QrCode\Generator;
 use Xendit\Payouts;
 use Xendit\Xendit;
 
@@ -16,11 +17,15 @@ use Xendit\Xendit;
 defined('ABSPATH') || exit;
 
 
-$json = file_get_contents('php://input');
+$json = json_decode(file_get_contents('php://input'));
 
 if (isset($_GET['va']) && $_GET['va'] == 'paid') {
+    $update = update_donation([
+        'external_id'   => $json->external_id,
+        'status'    => $json->status
+    ]);
     header('Content-Type: application/json');
-    echo $json;
+    echo $update;
     return;
 }
 
@@ -29,11 +34,20 @@ if (isset($_GET['va']) && $_GET['va'] == 'created') {
     echo $json;
     return;
 }
-
+if (isset($_GET['qr']) && $_GET['qr'] == 'webhook') {
+    $update = update_donation([
+        'external_id'   => $json->external_id,
+        'status'    => $json->status
+    ]);
+    header('Content-Type: application/json');
+    echo $update;
+    return;
+}
 
 
 $nominal = (int)$_POST['nominal'];
 $bank = $_POST['va_banks'];
+$email = $_POST['email'];
 $name = $_POST['first_name'] . ' ' . $_POST['last_name'];
 $external_id = "VA_fixed-" . strtotime(date_i18n('Y-m-d H:i:s'));
 $paramsVA = [
@@ -48,15 +62,31 @@ $createVA = \Xendit\VirtualAccounts::create($paramsVA);
 $paramsQR = [
     'external_id' => $external_id,
     'type' => 'STATIC',
-    'callback_url' => 'https://webhook.site',
+    'callback_url' => site_url('/pembayaran/?qr=webhook'),
     'amount' => $nominal,
 ];
 
 $qr_code = \Xendit\QRCode::create($paramsQR);
+
+$qrcode = new Generator;
 $args = [
-    'qr_code'   => $qr_code,
+    'qr_code'   => [
+        'scan'  => $qrcode->size(300)->generate($qr_code['qr_string']),
+    ],
     'va'        => $createVA
 ];
+
+add_donation([
+    'post_id'   => (int)$_POST['post_id'],
+    'amount'    => (int)$args['va']['expected_amount'],
+    'name'    => $args['va']['name'],
+    'email'    => $email,
+    'request_date'    => current_time('mysql'),
+    'bank'    => $args['va']['bank_code'],
+    'status'    => $args['va']['status'],
+    'external_id'    => $args['va']['external_id'],
+]);
+
 get_header();
 
 get_template_part('section-templates/general/general', 'header');

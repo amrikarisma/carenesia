@@ -71,7 +71,11 @@ defined('ABSPATH') || exit;
                     </table>
                 </div>
                 <div class="col-md-6">
-
+                    <div class="wrap-qr-code">
+                        <div class="qr-code">
+                            <?php echo $args['qr_code']['scan']; ?>
+                        </div>
+                    </div>
                 </div>
             </div>
 

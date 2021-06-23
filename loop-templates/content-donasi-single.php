@@ -8,6 +8,7 @@
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
+$persentase = number_format(((int)get_donation('total', $post->ID) ?? 0 / (int)get_field('donation_goals') ?? 0 * 100), 2, '.', '');
 ?>
 
 
@@ -21,17 +22,17 @@ defined('ABSPATH') || exit;
 	</div>
 	<div class="wrapper-progress">
 		<div class="progress-persentase">
-			<h6>100%</h6>
+			<h6><?php echo $persentase; ?>%</h6>
 		</div>
 		<div class="progress">
-			<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+			<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $persentase; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $persentase; ?>%;"></div>
 		</div>
 		<div class="progress-wrap-nominal">
 			<div class="float-left">
-				<h6>Raised:</h6> <span>Rp. 1.240.000</span>
+				<h6>Raised:</h6> <span>Rp. <?php echo number_format(get_donation('total', $post->ID) ?? 0, 0, ',', '.'); ?></span>
 			</div>
 			<div class="float-right">
-				<h6>Goal:</h6> <span>Rp. 10.000.000</span>
+				<h6>Goal:</h6> <span>Rp. <?php echo number_format(get_field('donation_goals') ?? 0, 0, ',', '.'); ?></span>
 			</div>
 		</div>
 	</div>
@@ -105,7 +106,7 @@ defined('ABSPATH') || exit;
 							</div>
 							<div class="col-md-12 mb-3">
 								<label for="email">Email Address</label>
-								<input type="email" class="form-control" id="email" placeholder="Email Address" value="" required>
+								<input type="email" class="form-control" name="email" id="email" placeholder="Email Address" value="" required>
 								<div class="valid-feedback">
 									Looks good!
 								</div>
@@ -123,6 +124,7 @@ defined('ABSPATH') || exit;
 						</div>
 						<div class="wrap-donate-btn">
 							<button type="submit" class="btn btn-primary">Donate Now</button>
+							<input type="hidden" name="post_id" value="<?php echo $post->ID; ?>">
 						</div>
 					</form>
 				</div>

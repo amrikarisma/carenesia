@@ -8,10 +8,8 @@
     <div class="wrap-list-about">
         <div class="container">
             <div class="row">
-                <!-- <pre> -->
                 <?php
-                // print_r(get_field('who_we_are'));
-                // die();
+
 
                 foreach (get_field('who_we_are')['list'] ?? [] as $list) : ?>
 
