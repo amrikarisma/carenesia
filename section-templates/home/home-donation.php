@@ -16,7 +16,7 @@
                 $loop = new WP_Query($args);
                 while ($loop->have_posts()) :
                     $loop->the_post();
-                    $persentase = number_format(((int)get_donation('total', get_the_ID()) ?? 0 / (int)get_field('donation_goals', get_the_ID()) ?? 0 * 100), 2, '.', '');
+                    $persentase = number_format(((int)get_donation('total', get_the_ID()) ?? 0 / (int)get_field('donation_goals') ?? 0 * 100), 2, '.', '');
 
                 ?>
                     <div class="col-md-4 mb-4">
