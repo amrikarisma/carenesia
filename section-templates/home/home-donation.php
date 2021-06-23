@@ -1,8 +1,8 @@
 <section class="donation">
     <div class="donation-header">
-        <h2>Latest Causes</h2>
+        <h2>Kampanye Donasi</h2>
         <div class="tagline">
-            <p>Organization set up to provide help and raise money for those in need</p>
+            <p>Ulurkan tangan untuk mereka yang sedang membutuhkan</p>
         </div>
     </div>
     <div class="wrap-list-donation">
