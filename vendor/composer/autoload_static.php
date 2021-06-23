@@ -18,6 +18,10 @@ class ComposerStaticInitbf9af4e67956548ce0688db75fe6d878
         array (
             'Xendit\\' => 7,
         ),
+        'S' => 
+        array (
+            'SimpleSoftwareIO\\QrCode\\' => 24,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -32,10 +36,15 @@ class ComposerStaticInitbf9af4e67956548ce0688db75fe6d878
         'D' => 
         array (
             'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 55,
+            'DASPRiD\\Enum\\' => 13,
         ),
         'C' => 
         array (
             'Composer\\Installers\\' => 20,
+        ),
+        'B' => 
+        array (
+            'BaconQrCode\\' => 12,
         ),
     );
 
@@ -43,6 +52,10 @@ class ComposerStaticInitbf9af4e67956548ce0688db75fe6d878
         'Xendit\\' => 
         array (
             0 => __DIR__ . '/..' . '/xendit/xendit-php/src',
+        ),
+        'SimpleSoftwareIO\\QrCode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -68,9 +81,17 @@ class ComposerStaticInitbf9af4e67956548ce0688db75fe6d878
         array (
             0 => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src',
         ),
+        'DASPRiD\\Enum\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dasprid/enum/src',
+        ),
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
+        ),
+        'BaconQrCode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
         ),
     );
 

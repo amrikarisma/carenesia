@@ -6,11 +6,20 @@
     'aliases' => 
     array (
     ),
-    'reference' => '04db2e16f7a2293b45af6ace1697b358996d4636',
+    'reference' => '6ddddb846655ef2df6e9d5d764079249ece4e0df',
     'name' => 'understrap/understrap',
   ),
   'versions' => 
   array (
+    'bacon/bacon-qr-code' => 
+    array (
+      'pretty_version' => '2.0.4',
+      'version' => '2.0.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f73543ac4e1def05f1a70bcd1525c8a157a1ad09',
+    ),
     'composer/installers' => 
     array (
       'pretty_version' => 'v1.10.0',
@@ -19,6 +28,15 @@
       array (
       ),
       'reference' => '1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d',
+    ),
+    'dasprid/enum' => 
+    array (
+      'pretty_version' => '1.0.3',
+      'version' => '1.0.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5abf82f213618696dda8e3bf6f64dd042d8542b2',
     ),
     'dealerdirect/phpcodesniffer-composer-installer' => 
     array (
@@ -170,6 +188,15 @@
         0 => '*',
       ),
     ),
+    'simplesoftwareio/simple-qrcode' => 
+    array (
+      'pretty_version' => '4.2.0',
+      'version' => '4.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '916db7948ca6772d54bb617259c768c9cdc8d537',
+    ),
     'squizlabs/php_codesniffer' => 
     array (
       'pretty_version' => '3.6.0',
@@ -186,7 +213,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '04db2e16f7a2293b45af6ace1697b358996d4636',
+      'reference' => '6ddddb846655ef2df6e9d5d764079249ece4e0df',
     ),
     'wp-coding-standards/wpcs' => 
     array (
