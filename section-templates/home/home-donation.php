@@ -23,7 +23,7 @@
                     }
 
                 ?>
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <a class="list-donation-box" href="<?php the_permalink(); ?>">
                             <div class="wrap-donation-image">
                                 <?php the_post_thumbnail(); ?>

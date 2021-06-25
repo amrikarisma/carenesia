@@ -4,25 +4,25 @@
     background-size: cover;">
     <div class="container">
         <div class="row">
-            <div class="col-md">
+            <div class="col-md-6 col-lg-3">
                 <div class="wrap-counter">
                     <div class="count">1259</div>
                     <div class="note">Donations</div>
                 </div>
             </div>
-            <div class="col-md">
+            <div class="col-md-6 col-lg-3">
                 <div class="wrap-counter">
                     <div class="count">730</div>
                     <div class="note">Volunteers</div>
                 </div>
             </div>
-            <div class="col-md">
+            <div class="col-md-6 col-lg-3">
                 <div class="wrap-counter">
                     <div class="count">827</div>
                     <div class="note">Projects</div>
                 </div>
             </div>
-            <div class="col-md">
+            <div class="col-md-6 col-lg-3">
                 <div class="wrap-counter">
                     <div class="count">460</div>
                     <div class="note">Projects</div>
