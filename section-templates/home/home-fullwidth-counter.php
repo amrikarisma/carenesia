@@ -4,7 +4,7 @@
     background-size: cover;">
     <div class="container">
         <div class="row">
-            <?php foreach (get_field('counter_section')['item'] ?? [] as $counter) : ?>
+            <?php foreach (get_field('counter_section') ?? [] as $counter) : ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="wrap-counter">
                         <div class="count"><?php echo $counter['value']; ?></div>
