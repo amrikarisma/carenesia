@@ -82,6 +82,37 @@ article {
 		padding-bottom: 70px;
 	}
 }
+.footer-widget,
+.entry-content {
+
+	ul {
+		list-style-type: none;
+		margin-bottom: 15px;
+	}
+	ul > li {
+		padding-left: 26px;
+		padding-bottom: 9px;
+		position: relative;
+		font-family: inherit;
+		&::before {
+			height: 5px;
+			width: 5px;
+			display: inline-block;
+			position: absolute;
+			left: 0;
+			top: 10.5px;
+			padding: 0;
+			background-color: $primary;
+			text-align: center;
+			content: '';
+		}
+	}
+}
+.textwidget {
+	p {
+		margin-bottom: 20px;
+	}
+}
 
 .btn {
 	border-width: 2px;

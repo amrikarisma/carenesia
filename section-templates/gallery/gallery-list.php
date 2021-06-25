@@ -15,7 +15,7 @@
                  * Output the title with an excerpt.
                  */
                 $args = array(
-                    'post_type' => 'donasi',
+                    'post_type' => 'galeri',
                     'post_status' => 'publish',
                     'posts_per_page' => 8,
                     'paged' => get_query_var('paged'),

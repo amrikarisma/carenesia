@@ -37,14 +37,28 @@ body {
 #wrapper-footer-full {
 	color: #fff;
 	background-color: #141414;
+	padding-top: 98px;
+	padding-bottom: 90px;
 	.widget-title {
 		color: #fff;
 		font-size: 18px;
 		line-height: 1.445em;
+		margin-bottom: 30px;
 	}
 	.footer-widget {
 		ul {
-			padding-left: 20px;
+			a {
+				font-family: "Merriweather",serif;
+				font-style: normal;
+				color: #fff;
+			}
+			.post-date {
+				display: block;
+				font-size: 11px;
+				line-height: 14px;
+				color: $primary;
+				font-family: "Open Sans",sans-serif;
+			}
 		}
 	}
 }
