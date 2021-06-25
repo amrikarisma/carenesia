@@ -99,6 +99,33 @@ section {
 			.list-donation-box {
 				color: inherit;	
 			}
+			.wrap-donation-image {
+				position: relative;
+				overflow: hidden;
+				&:hover {
+					.wrap-button-donation {
+						-webkit-transform: translateY(0);
+						-moz-transform: translateY(0);
+						transform: translateY(0);
+					}
+				}
+			}
+			.wrap-button-donation {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				padding: 25px;
+				box-sizing: border-box;
+				background-color: rgba(0,0,0,.4);
+				text-align: center;
+				-webkit-transform: translateY(100%);
+				-moz-transform: translateY(100%);
+				transform: translateY(100%);
+				-webkit-transition: -webkit-transform .35s cubic-bezier(.14,.41,.58,1);
+				transition: transform .35s cubic-bezier(.14,.41,.58,1);
+				z-index: 10;
+			}
 			.wrap-donation-text {
 				font-size: 14px;
 				background-color: $softlightColor;

@@ -7,6 +7,14 @@
 .dark-transparant {
 	background-color: rgba(0, 0, 0, 0.59);
 }
+.custom-logo-link {
+    margin-top: -5px;
+    max-width: 55px;
+    max-height: 63px;
+    overflow: hidden;
+	img {
+	}
+}
 .home-slider {
 	.owl-item img {
 		@media (max-width: 767px) {

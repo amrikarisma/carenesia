@@ -29,6 +29,7 @@ $understrap_includes = array(
 	'/editor.php',                          // Load Editor functions.
 	'/deprecated.php',                      // Load deprecated functions.
 	'/transaction.php',                      // Load transaction functions.
+	'/donation.php',                      // Load donation functions.
 );
 
 // Load WooCommerce functions if WooCommerce is activated.

@@ -1,8 +1,8 @@
 <section class="planner">
     <div class="planner-header">
-        <h2>Fundraising Plans</h2>
+        <h2><?php echo get_field('plan')['title'] ?? ''; ?></h2>
         <div class="tagline">
-            <p>Organization set up to provide help and raise money for those in need</p>
+            <p><?php echo get_field('plan')['caption'] ?? ''; ?></p>
         </div>
     </div>
     <div class="wrap-planner">
@@ -11,19 +11,21 @@
                 <div class="col-md-6">
                     <div class="wrap-planner-text" style="background-image: url('https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/h1-presentation-img-1.jpg')">
                         <div class="inner-text-planner">
-                            <h2 class="title">Become a VOLUNTEER</h2>
+                            <h2 class="title"><?php echo get_field('plan')['content_title'] ?? ''; ?></h2>
                             <div class="wrapper-content-planner">
-                                <p>Nulla fermentum turpis id nunc tincidunt, vitae hendrerit orci viverra. Nulla facilisi. Duis tempor nisl nec dolor malesuada viverra. Morbi id tempus nisi, a varius enim. Morbi eget augue neque, un in ligula.</p>
+                                <p><?php echo get_field('plan')['content_text'] ?? ''; ?></p>
                             </div>
-                            <button class="btn btn-secondary">Sign In</button>
+                            <a class="btn btn-secondary" href="<?php echo get_field('plan')['button_url'] ?? ''; ?>"><?php echo get_field('plan')['text_button'] ?? ''; ?></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="home-planner owl-carousel owl-theme">
-                        <div class="item">
-                            <img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/h1-img-8.jpg" alt="">
-                        </div>
+                        <?php foreach (get_field('plan')['slider'] ?? [] as $plan_slider) : ?>
+                            <div class="item">
+                                <img src="<?php echo $plan_slider['image']['url']; ?>" alt="">
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

@@ -21,7 +21,7 @@ if ((int)get_donation('total', $post->ID)) {
 	<div class="wrap-featured-iamge">
 		<?php echo get_the_post_thumbnail($post->ID, 'large'); ?>
 		<div class="wrap-donation-btn">
-			<button class="btn btn-primary" data-toggle="modal" data-target="#modalDonation">Donate</button>
+			<button class="btn btn-primary" data-toggle="modal" data-target="#modalDonation">Donasi</button>
 		</div>
 	</div>
 	<div class="wrapper-progress">
@@ -43,13 +43,6 @@ if ((int)get_donation('total', $post->ID)) {
 	<header class="entry-header">
 
 		<?php the_title('<h3 class="entry-title">', '</h3>'); ?>
-
-		<div class="entry-meta">
-
-			<?php //understrap_posted_on(); 
-			?>
-
-		</div><!-- .entry-meta -->
 
 	</header><!-- .entry-header -->
 	<div class="entry-content">
@@ -95,22 +88,22 @@ if ((int)get_donation('total', $post->ID)) {
 						</div>
 						<div class="form-row">
 							<div class="col-md-6 mb-3">
-								<label for="first_name">First name</label>
-								<input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name" value="" required>
+								<label for="first_name">Nama Depan</label>
+								<input type="text" class="form-control" name="first_name" id="first_name" placeholder="Nama Depan" value="" required>
 								<div class="valid-feedback">
 									Looks good!
 								</div>
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="last_name">Last name</label>
-								<input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last name" value="" required>
+								<label for="last_name">Nama Belakang</label>
+								<input type="text" class="form-control" name="last_name" id="last_name" placeholder="Nama Belakang" value="" required>
 								<div class="valid-feedback">
 									Looks good!
 								</div>
 							</div>
 							<div class="col-md-12 mb-3">
-								<label for="email">Email Address</label>
-								<input type="email" class="form-control" name="email" id="email" placeholder="Email Address" value="" required>
+								<label for="email">Email</label>
+								<input type="email" class="form-control" name="email" id="email" placeholder="Email" value="" required>
 								<div class="valid-feedback">
 									Looks good!
 								</div>
@@ -127,7 +120,7 @@ if ((int)get_donation('total', $post->ID)) {
 							</div>
 						</div>
 						<div class="wrap-donate-btn">
-							<button type="submit" class="btn btn-primary">Donate Now</button>
+							<button type="submit" class="btn btn-primary">Donasi Sekarang</button>
 							<input type="hidden" name="post_id" value="<?php echo $post->ID; ?>">
 						</div>
 					</form>

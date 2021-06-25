@@ -27,6 +27,9 @@
                         <a class="list-donation-box" href="<?php the_permalink(); ?>">
                             <div class="wrap-donation-image">
                                 <?php the_post_thumbnail(); ?>
+                                <div class="wrap-button-donation">
+                                    <span class="btn btn-primary">Donasi</span>
+                                </div>
                             </div>
                             <div class="wrap-donation-text">
                                 <div class="category">
