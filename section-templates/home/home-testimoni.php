@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-3">
                                 <div class="wrap-testimoni-author-photo">
-                                    <img src="<?php echo $testiomi['photo']['image']['url']; ?>" alt="" class="rounded-circle">
+                                    <img src="<?php echo $testiomi['photo']['url']; ?>" alt="" class="rounded-circle">
                                 </div>
                             </div>
                             <div class="col-9">

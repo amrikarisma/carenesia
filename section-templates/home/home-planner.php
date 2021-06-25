@@ -23,7 +23,7 @@
                     <div class="home-planner owl-carousel owl-theme">
                         <?php foreach (get_field('plan')['slider'] ?? [] as $plan_slider) : ?>
                             <div class="item">
-                                <img src="<?php echo $plan_slider['image']['url']; ?>" alt="">
+                                <img src="<?php echo $plan_slider['url']; ?>" alt="">
                             </div>
                         <?php endforeach; ?>
                     </div>
