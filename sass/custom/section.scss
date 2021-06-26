@@ -278,6 +278,9 @@ section {
 		background-color: $secondary;
 		h2 {
 			color: $lightColor;
+			@media (max-width: 767px) {
+				font-size: 21px;
+			}
 		}
 	}
 	&.member {
