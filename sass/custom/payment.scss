@@ -5,3 +5,13 @@
         max-width: 340px;
     }
 }
+
+.modal-donation {
+    .modal-dialog {
+        &.credit-card-form-active {
+            @media(min-width: 992px) {
+                max-width: 800px;
+            }
+        }
+    }
+}

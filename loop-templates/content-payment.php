@@ -15,18 +15,6 @@ defined('ABSPATH') || exit;
 
     <div class="container">
 
-        <header class="entry-header">
-
-            <?php the_title('<h3 class="entry-title">', '</h3>'); ?>
-
-            <div class="entry-meta">
-
-                <?php //understrap_posted_on(); 
-                ?>
-
-            </div><!-- .entry-meta -->
-
-        </header><!-- .entry-header -->
         <div class="entry-content">
             <!-- Array ( [is_closed] => [status] => PENDING [currency] => IDR [owner_id] => 60c48cf24daf6a40ad0895ee [external_id] => VA_fixed-1624262199 [bank_code] => BNI [merchant_code] => 8808 [name] => Merritt Downs [account_number] => 8808999916816312 [is_single_use] => [expiration_date] => 2052-06-20T17:00:00.000Z [id] => 60cfe3c7606c6f7a4ca08804 ) -->
             <div class="row">

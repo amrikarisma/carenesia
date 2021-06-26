@@ -19,7 +19,6 @@ defined('ABSPATH') || exit;
 
 $json = json_decode(file_get_contents('php://input'));
 
-
 if (isset($_GET['va']) && $_GET['va'] == 'paid') {
     $update = update_donation([
         'external_id'   => $json->external_id,
@@ -62,48 +61,68 @@ if (isset($_GET['invoice']) && $_GET['invoice'] == 'paid') {
     return;
 }
 
+if (isset($_POST['payment_method'])) {
+    $nominal = (int)$_POST['nominal'];
 
-$nominal = (int)$_POST['nominal'];
-$bank = $_POST['va_banks'];
-$email = $_POST['email'];
-$name = $_POST['first_name'] . ' ' . $_POST['last_name'];
-$external_id = "VA_fixed-" . strtotime(date_i18n('Y-m-d H:i:s'));
-$paramsVA = [
-    "external_id" => $external_id,
-    "bank_code" => $bank,
-    "name" => $name,
-    "expected_amount"   => $nominal
-];
+    if ($_POST['payment_method'] == 'credit_card') {
+        $params = [
+            'token_id' => $_POST['token_id'],
+            'external_id' => 'card_' . time(),
+            'authentication_id' => $_POST['authentication_id'],
+            'amount' => $nominal,
+            'card_cvn' => $_POST['cc-cvc'],
+            'capture' => false
+        ];
 
-$createVA = \Xendit\VirtualAccounts::create($paramsVA);
+        $createCharge = \Xendit\Cards::create($params);
+        header('Content-Type: application/json');
+        echo $createCharge;
+        return;
+    } elseif ($_POST['payment_method'] == 'bank') {
+        $bank = $_POST['va_banks'];
+        $email = $_POST['email'];
+        $name = $_POST['first_name'] . ' ' . $_POST['last_name'];
+        $external_id = "VA_fixed-" . strtotime(date_i18n('Y-m-d H:i:s'));
+        $paramsVA = [
+            "external_id" => $external_id,
+            "bank_code" => $bank,
+            "name" => $name,
+            "expected_amount"   => $nominal
+        ];
 
-$paramsQR = [
-    'external_id' => $external_id,
-    'type' => 'STATIC',
-    'callback_url' => site_url('/pembayaran/?qr=webhook'),
-    'amount' => $nominal,
-];
+        $createVA = \Xendit\VirtualAccounts::create($paramsVA);
 
-$qr_code = \Xendit\QRCode::create($paramsQR);
+        $paramsQR = [
+            'external_id' => $external_id,
+            'type' => 'STATIC',
+            'callback_url' => site_url('/pembayaran/?qr=webhook'),
+            'amount' => $nominal,
+        ];
 
-$qrcode = new Generator;
-$args = [
-    'qr_code'   => [
-        'scan'  => $qrcode->size(300)->generate($qr_code['qr_string']),
-    ],
-    'va'        => $createVA
-];
+        $qr_code = \Xendit\QRCode::create($paramsQR);
 
-add_donation([
-    'post_id'   => (int)$_POST['post_id'],
-    'amount'    => (int)$args['va']['expected_amount'],
-    'name'    => $args['va']['name'],
-    'email'    => $email,
-    'request_date'    => current_time('mysql'),
-    'bank'    => $args['va']['bank_code'],
-    'status'    => $args['va']['status'],
-    'external_id'    => $args['va']['external_id'],
-]);
+        $qrcode = new Generator;
+        $args = [
+            'qr_code'   => [
+                'scan'  => $qrcode->size(300)->generate($qr_code['qr_string']),
+            ],
+            'va'        => $createVA
+        ];
+
+        add_donation([
+            'post_id'   => (int)$_POST['post_id'],
+            'amount'    => (int)$args['va']['expected_amount'],
+            'name'    => $args['va']['name'],
+            'email'    => $email,
+            'request_date'    => current_time('mysql'),
+            'bank'    => $args['va']['bank_code'],
+            'status'    => $args['va']['status'],
+            'external_id'    => $args['va']['external_id'],
+        ]);
+    }
+}
+
+
 
 get_header();
 

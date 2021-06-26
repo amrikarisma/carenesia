@@ -49,7 +49,13 @@ $container = get_theme_mod('understrap_container_type');
 
 </div><!-- #page we need this extra closing tag here -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+
+<script type="text/javascript" src="https://js.xendit.co/v1/xendit.min.js"></script>
 <?php wp_footer(); ?>
+<script type="text/javascript">
+	Xendit.setPublishableKey('<?php echo XENDIT_PUBLIC_API_KEY; ?>');
+</script>
 
 </body>
 
