@@ -32,7 +32,11 @@
                         <div class="member-item-box">
                             <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
                                 <div class="wrap-image">
-                                    <?php echo get_the_post_thumbnail($donasi->ID, 'large'); ?>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <div class="embed-responsive-item">
+                                            <?php echo get_the_post_thumbnail($donasi->ID, 'large'); ?>
+                                        </div>
+                                    </div>
                                     <div class="overlay-thumbnail">
                                         <i class="fa fa-link" aria-hidden="true"></i>
                                     </div>

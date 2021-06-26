@@ -23,15 +23,19 @@
                     'order' => 'ASC',
                 );
 
-                $donasi = new WP_Query($args);
+                $galeri = new WP_Query($args);
 
-                while ($donasi->have_posts()) : $donasi->the_post();  ?>
+                while ($galeri->have_posts()) : $galeri->the_post();  ?>
 
                     <div class="col-md-6 col-lg-6">
                         <div class="member-item-box">
                             <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
                                 <div class="wrap-image">
-                                    <?php echo get_the_post_thumbnail($donasi->ID, 'large'); ?>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <div class="embed-responsive-item">
+                                            <?php echo get_the_post_thumbnail($galeri->ID, 'large'); ?>
+                                        </div>
+                                    </div>
                                     <div class="overlay-thumbnail">
                                         <i class="fa fa-link" aria-hidden="true"></i>
                                     </div>
@@ -60,7 +64,7 @@
                 <?php $paged = max(get_query_var('paged'), get_query_var('page'), 1);
                 understrap_pagination([
                     'current' => $paged,
-                    'total'   => $donasi->max_num_pages,
+                    'total'   => $galeri->max_num_pages,
                 ]); ?>
             </div>
         </div>

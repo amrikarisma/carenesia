@@ -2,7 +2,7 @@
     <div class="planner-header">
         <h2><?php echo get_field('plan')['title'] ?? ''; ?></h2>
         <div class="tagline">
-            <p><?php echo get_field('plan')['caption'] ?? ''; ?></p>
+            <p style="white-space: pre-wrap;"><?php echo get_field('plan')['caption'] ?? ''; ?></p>
         </div>
     </div>
     <div class="wrap-planner">
