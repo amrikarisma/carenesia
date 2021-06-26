@@ -32,6 +32,11 @@ if (isset($_GET['va']) && $_GET['va'] == 'paid') {
 }
 
 if (isset($_GET['va']) && $_GET['va'] == 'created') {
+    $update = update_donation([
+        'external_id'   => $json->external_id,
+        'status'    => $json->status,
+        'bank_code'    => $json->bank_code
+    ]);
     header('Content-Type: application/json');
     echo $update;
     return;

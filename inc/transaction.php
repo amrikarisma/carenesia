@@ -73,12 +73,17 @@ function get_donation($condition, $value = null)
 function update_donation($data)
 {
     global $wpdb;
-    $results = $wpdb->update($wpdb->prefix . 'transactions', array(
-        // field to update
-        'transaction_paid_date' => strtotime(date_i18n('Y-m-d H:i:s')),
-        'transaction_status' => $data['status'],
-        'transaction_bank'      => $data['bank_code']
-    ), array(
+
+    $param['transaction_paid_date'] = strtotime(date_i18n('Y-m-d H:i:s'));
+
+    if (isset($data['status'])) {
+        $param['transaction_status'] = $data['status'];
+    }
+    if (isset($data['bank_code'])) {
+        $param['transaction_bank'] = $data['bank_code'];
+    }
+
+    $results = $wpdb->update($wpdb->prefix . 'transactions', $param, array(
         // where clause
         'transaction_external_id' => $data['external_id']
     ));
