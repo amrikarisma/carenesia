@@ -109,8 +109,16 @@ if ((int)get_donation('total', $post->ID)) {
 								</div>
 							</div>
 							<div class="col-md-12 mb-3">
+								<label for="payment_method">Metode Pembayaran</label>
+								<select class="form-control" name="payment_method" id="payment_method">
+									<option value="">Pilih Metode Pembayaran</option>
+									<option value="credit_card">Kartu Kredit</option>
+									<option value="bank">Transfer Bank</option>
+								</select>
+							</div>
+							<div class="col-md-12 mb-3" id="wrap_va_banks" style="display: none;">
+								<label for="va_banks">Daftar Bank</label>
 								<select class="form-control" name="va_banks" id="va_banks">
-
 									<?php
 									$getVABanks = \Xendit\VirtualAccounts::getVABanks();
 									foreach ($getVABanks as $va) : ?>

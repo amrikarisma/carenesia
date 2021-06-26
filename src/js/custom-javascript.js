@@ -28,4 +28,14 @@ jQuery(function($) {
             },
         }
     });
+    $(function () {
+       $('#payment_method').on('change', function () {
+           console.log($(this).val());
+          if($(this).val() == 'bank') {
+            $('#wrap_va_banks').css('display','block');
+          } else {
+            $('#wrap_va_banks').css('display','none');
+          }
+       });
+    });
 });

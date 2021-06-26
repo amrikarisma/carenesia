@@ -14,14 +14,10 @@ $container = get_theme_mod('understrap_container_type');
 ?>
 <?php
 while (have_posts()) :
-	the_post(); ?>
-	<section class="header" style="background-image:url('https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/03/team-parallax-img-1.jpg');    height: 280px;">
-		<div class="wrap-title">
-			<div class="container">
-				<h2 class="title"><?php the_title(); ?></h2>
-			</div>
-		</div>
-	</section>
+	the_post();
+	get_template_part('section-templates/general/general', 'header');
+?>
+
 	<div class="wrapper" id="single-wrapper">
 
 		<div class="<?php echo esc_attr($container); ?>" id="content" tabindex="-1">
