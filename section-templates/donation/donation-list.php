@@ -1,9 +1,10 @@
 <section class="member">
     <div class="wrap-member-list-header">
         <div class="container">
-            <!-- <?php the_title('<h2 class="member-list-header-title">', '</h2>'); ?>
+            <?php // the_title('<h2 class="member-list-header-title">', '</h2>'); 
+            ?>
             <div class="tagline"><?php the_content(); ?></div>
-            <div class="line"></div> -->
+            <div class="line"></div>
         </div>
     </div>
     <div class="wrap-member-list-content">
