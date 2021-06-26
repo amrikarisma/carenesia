@@ -42,7 +42,7 @@ if (isset($_GET['qr']) && $_GET['qr'] == 'webhook') {
         'bank_code'    => 'QR Code'
     ]);
     header('Content-Type: application/json');
-    echo $update;
+    echo $json;
     return;
 }
 if (isset($_GET['invoice']) && $_GET['invoice'] == 'PAID') {
@@ -52,7 +52,7 @@ if (isset($_GET['invoice']) && $_GET['invoice'] == 'PAID') {
         'bank_code'    => $json->bank_code,
     ]);
     header('Content-Type: application/json');
-    echo $update;
+    echo $json;
     return;
 }
 
