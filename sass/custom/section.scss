@@ -6,12 +6,21 @@ section {
 				font-size: 18px;
 				margin-bottom: 30px;
 				line-height: 1.2em;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
 				@media (min-width: 768px) {
 					font-size: 18px;
+					-webkit-line-clamp: 3;
 				}
-				@media (min-width: 1025px) {
-					font-size: 35px;
+				@media (min-width: 1200px) {
+					font-size: 30px;
+					-webkit-line-clamp: 4;
 					margin-bottom: 20px;
+				}
+				@media (min-width: 1400px) {
+					font-size: 35px;
+					-webkit-line-clamp: 5;
 				}
 			}
 			position: absolute;
@@ -160,7 +169,7 @@ section {
 			padding: 30px 10px;
 			.count {
 				font-family: "Merriweather", serif;
-				font-size: 80px;
+				font-size: 50px;
 				line-height: 0.98em;
 				font-weight: 700;
 				margin-bottom: 16px;

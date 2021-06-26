@@ -40,7 +40,7 @@
 	}
 
 	.title {
-		font-size: 63px;
+		font-size: 50px;
 		font-weight: 700;
 		padding: 15px 10px;
 		@media (max-width: 767px) {
@@ -48,6 +48,9 @@
 		}
 		@media (max-width: 1024px) {
 			font-size: 30px;
+		}
+		@media (min-width: 1400px) {
+			font-size: 63px;
 		}
 	}
 	.caption {
