@@ -22,7 +22,8 @@ $json = json_decode(file_get_contents('php://input'));
 if (isset($_GET['va']) && $_GET['va'] == 'paid') {
     $update = update_donation([
         'external_id'   => $json->external_id,
-        'status'    => $json->status
+        'status'    => $json->status,
+        'bank_code'    => $json->bank_code
     ]);
     header('Content-Type: application/json');
     echo $update;
@@ -36,8 +37,19 @@ if (isset($_GET['va']) && $_GET['va'] == 'created') {
 }
 if (isset($_GET['qr']) && $_GET['qr'] == 'webhook') {
     $update = update_donation([
+        'external_id'   => $json->qr_code->external_id,
+        'status'    => $json->status,
+        'bank_code'    => 'QR Code'
+    ]);
+    header('Content-Type: application/json');
+    echo $update;
+    return;
+}
+if (isset($_GET['invoice']) && $_GET['invoice'] == 'PAID') {
+    $update = update_donation([
         'external_id'   => $json->external_id,
-        'status'    => $json->status
+        'status'    => $json->status,
+        'bank_code'    => $json->bank_code,
     ]);
     header('Content-Type: application/json');
     echo $update;
