@@ -102,6 +102,7 @@ if (isset($_POST['payment_method'])) {
             'name'    => $args['va']['name'],
             'email'    => $email,
             'request_date'    => current_time('mysql'),
+            'payment_method'    => $_POST['payment_method'],
             'bank'    => $args['va']['bank_code'],
             'status'    => $args['va']['status'],
             'external_id'    => $args['va']['external_id'],

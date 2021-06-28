@@ -7173,9 +7173,6 @@ jQuery(function ($) {
       $('#three-ds-container').hide();
       $('.overlay').hide(); // $('[name=token_id]').val(creditCardToken.id);
       // $('[name=authentication_id]').val(creditCardToken.authentication_id);
-      // $('.modal-donation').find('form').trigger('reset');
-      // $('#content_donation').html(messageSuccess(creditCardToken));
-      // $('.modal-donation').show();
 
       var requestData = {};
       $.extend(requestData, getTokenData());
@@ -7220,7 +7217,86 @@ jQuery(function ($) {
         'action': 'create_charge',
         'nominal': $form.find('#nominal').val(),
         'authentication_id': d.authentication_id,
-        'token_id': d.id
+        'token_id': d.id,
+        'cc-cvc': $form.find('#cc-cvc').val()
+      };
+      jQuery.ajax({
+        type: "POST",
+        dataType: "json",
+        url: ajax_carenesia.ajaxurl,
+        data: formData,
+        success: function (data) {
+          console.log(data);
+          captureCharge(data);
+          createDonation(data);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          console.log("Status: ", textStatus);
+          console.log("Error: ", errorThrown);
+        }
+      });
+    }
+
+    function captureCharge(d) {
+      var formData = {
+        'action': 'capture_charge',
+        'amount': d.authorized_amount,
+        'id': d.id
+      };
+      jQuery.ajax({
+        type: "POST",
+        dataType: "json",
+        url: ajax_carenesia.ajaxurl,
+        data: formData,
+        success: function (data) {
+          console.log(data);
+          updateDonation(data);
+          $('.modal-donation').find('form').trigger('reset');
+          $('.modal-donation').modal('hide');
+          Swal.fire('Pembayaran telah berhasil!', 'Tagihan berhasil dibuat di Kartu Kredit anda!', 'success');
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          console.log("Status: ", textStatus);
+          console.log("Error: ", errorThrown);
+        }
+      });
+    }
+
+    function createDonation(d) {
+      var formData = {
+        'action': 'create_donation',
+        'post_id': $form.find('[name="post_id"]').val(),
+        'amount': d.capture_amount != 0 ? d.capture_amount : d.authorized_amount,
+        'name': $form.find('[name="first_name"]').val() + ' ' + $form.find('[name="last_name"]').val(),
+        'email': $form.find('[name="email"]').val(),
+        'method': $form.find('[name="payment_method"]').val(),
+        'bank': d.issuing_bank_name,
+        'status': d.status,
+        'external_id': d.external_id,
+        'paid_date': d.created
+      };
+      console.log(formData);
+      jQuery.ajax({
+        type: "POST",
+        dataType: "json",
+        url: ajax_carenesia.ajaxurl,
+        data: formData,
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          console.log("Status: ", textStatus);
+          console.log("Error: ", errorThrown);
+        }
+      });
+    }
+
+    function updateDonation(d) {
+      var formData = {
+        'action': 'update_donation',
+        'status': d.status,
+        'external_id': d.external_id,
+        'paid_date': d.created
       };
       console.log(formData);
       jQuery.ajax({
