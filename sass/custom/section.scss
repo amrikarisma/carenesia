@@ -199,7 +199,10 @@ section {
 				margin-top: -5px;
 				height: 300px;
 				@media (min-width: 992px) {
-					height: 415px;
+					height: 328px;
+				}
+				@media (min-width: 1024px) {
+					height: 390px;
 				}
 				.inner-text-planner {
 					@media (max-width: 767px) {
@@ -227,6 +230,16 @@ section {
 				}
 				p {
 					color: $lightColor;
+				}
+			}
+		}
+		.home-planner {
+			.owl-dots {
+				position: absolute;
+				bottom: 40px;
+				right: 0;
+				@media (min-width: 767px) {
+					bottom: 65px;
 				}
 			}
 		}
@@ -346,4 +359,5 @@ section {
 			}
 		}
 	}
+
 }
