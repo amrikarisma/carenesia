@@ -8,10 +8,12 @@
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
-if ((int)get_donation('total', $post->ID)) {
+if (get_donation('total', $post->ID) && get_field('donation_goals')) {
 	$persentase = number_format((((int)get_donation('total', $post->ID) ?? 0) / ((int)get_field('donation_goals') ?? 0) * 100), 2, '.', '');
-} else {
+} else if (get_field('donation_goals')) {
 	$persentase = 0;
+} else {
+	$persentase = 100;
 }
 ?>
 
@@ -69,7 +71,7 @@ if ((int)get_donation('total', $post->ID)) {
 </article><!-- #post-## -->
 
 <!-- Modal -->
-<div class="modal-donation modal fade" id="modalDonation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-donation modal fade" id="modalDonation" tabindex="-1" role="dialog" aria-labelledby="modalDonationTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-body">

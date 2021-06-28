@@ -44,6 +44,7 @@ jQuery(function($) {
             if($('#payment_method').val() == 'credit_card' && $('[name=token_id]').val() == '') {
                 e.preventDefault();
                 hideResults();
+                $('.preloader').fadeIn();
 
                 var cardType = $.payment.cardType($('.cc-number').val());
                 $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
@@ -64,12 +65,14 @@ jQuery(function($) {
         function xenditResponseHandler(err, creditCardToken) {
             console.log('err: ',err);
             console.log('cc token: ',creditCardToken);
+
             if (err) {
                 return displayError(err);
             }
             if (creditCardToken.status === 'APPROVED' || creditCardToken.status === 'VERIFIED') {
                 displaySuccess(creditCardToken);
             } else if (creditCardToken.status === 'IN_REVIEW') {
+                $('.preloader').fadeOut();
                 window.open(creditCardToken.payer_authentication_url, 'sample-inline-frame');
                 $('body').css('position', 'relative');
                 $('.modal-donation').addClass('d-none');
@@ -82,29 +85,18 @@ jQuery(function($) {
             }
         }
         function displayError (err) {
+            $('.preloader').fadeOut();
             $('.modal-donation').removeClass('d-none');
             $('#three-ds-container').hide();
             $('.overlay').hide();
-            $('#error .result').text(JSON.stringify(err, null, 4));
-            $('#error').show();
-
-            var requestData = {};
-            $.extend(requestData, getTokenData());
-            $('#error .request-data').text(JSON.stringify(requestData, null, 4));
-
         };
 
         function displaySuccess (creditCardToken) {
+            $('.preloader').fadeIn();
             $('.modal-donation').removeClass('d-none');
             $('.modal-donation').show();
             $('#three-ds-container').hide();
             $('.overlay').hide();
-            // $('[name=token_id]').val(creditCardToken.id);
-            // $('[name=authentication_id]').val(creditCardToken.authentication_id);
-
-            var requestData = {};
-            $.extend(requestData, getTokenData());
-            $('#success .request-data').text(JSON.stringify(requestData, null, 4));
             return createCharge(creditCardToken);
 
         }
@@ -180,6 +172,7 @@ jQuery(function($) {
                 data: formData,
                 success: function(data){
                     console.log(data);
+                    $('.preloader').fadeOut();
                     updateDonation(data);
                     $('.modal-donation').find('form').trigger('reset');
                     $('.modal-donation').modal('hide');
@@ -262,21 +255,22 @@ jQuery(function($) {
         
 	});
     $(function () {
-       $('#payment_method').on('change', function () {
-           console.log($(this).val());
-          if($(this).val() == 'bank') {
+        $('.preloader').fadeOut();
+        $('#payment_method').on('change', function () {
+            console.log($(this).val());
+            if($(this).val() == 'bank') {
             $('#wrap_va_banks').css('display','block');
             $('#credit_card_form').css('display','none');
             $('.modal-donation ').find('.modal-dialog').removeClass('credit-card-form-active');
             $('.modal-donation ').find('#section_form_donatur').removeClass('col-md-6');
             $('.modal-donation ').find('#section_form_donatur').addClass('col-md-12');
-          } else {
+            } else {
             $('#wrap_va_banks').css('display','none');
             $('#credit_card_form').css('display','block');
             $('.modal-donation ').find('.modal-dialog').addClass('credit-card-form-active');
             $('.modal-donation ').find('#section_form_donatur').removeClass('col-md-12');
             $('.modal-donation ').find('#section_form_donatur').addClass('col-md-6');
-          }
-       });
+            }
+        });
     });
 });

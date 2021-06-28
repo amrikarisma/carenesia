@@ -21,10 +21,34 @@ $container = get_theme_mod('understrap_container_type');
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<?php wp_head(); ?>
+	<style type="text/css">
+		.preloader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			background-color: rgba(255, 255, 255, 0.919);
+		}
+
+		.preloader .loading {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			font: 14px arial;
+		}
+	</style>
 </head>
 
-<body <?php body_class(); ?> <?php understrap_body_attributes(); ?>>
+<body <?php body_class(); ?> <?php understrap_body_attributes(); ?> id="loader">
 	<?php do_action('wp_body_open'); ?>
+	<div class="preloader">
+		<div class="loading">
+			<img class="img-fluid" src="<?php echo get_template_directory_uri() . '/src/img/loading.gif'; ?>" width="150">
+		</div>
+	</div>
 	<div class="site" id="page">
 
 		<!-- ******************* The Navbar Area ******************* -->
