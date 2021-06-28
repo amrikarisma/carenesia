@@ -96,3 +96,24 @@ function delete_donation()
         'subscriber_email' => 'friyanto@gmail.com'
     ));
 }
+
+
+add_action('wp_ajax_create_charge',  'create_charge_credit_card');
+add_action('wp_ajax_nopriv_create_charge', 'create_charge_credit_card');
+
+function create_charge_credit_card()
+{
+    $params = [
+        'token_id' => $_POST['token_id'],
+        'external_id' => 'card_' . time(),
+        'authentication_id' => $_POST['authentication_id'],
+        'amount' => $_POST['nominal'],
+        'card_cvn' => $_POST['cc-cvc'],
+        'capture' => false
+    ];
+
+    // $createCharge = \Xendit\Cards::create($params);
+    header('Content-Type: application/json');
+    return wp_json_encode($params);
+    die(); // this is required to terminate immediately and return a proper response
+}

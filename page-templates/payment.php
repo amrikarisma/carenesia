@@ -65,19 +65,6 @@ if (isset($_POST['payment_method'])) {
     $nominal = (int)$_POST['nominal'];
 
     if ($_POST['payment_method'] == 'credit_card') {
-        $params = [
-            'token_id' => $_POST['token_id'],
-            'external_id' => 'card_' . time(),
-            'authentication_id' => $_POST['authentication_id'],
-            'amount' => $nominal,
-            'card_cvn' => $_POST['cc-cvc'],
-            'capture' => false
-        ];
-
-        $createCharge = \Xendit\Cards::create($params);
-        header('Content-Type: application/json');
-        echo $createCharge;
-        return;
     } elseif ($_POST['payment_method'] == 'bank') {
         $bank = $_POST['va_banks'];
         $email = $_POST['email'];
@@ -122,11 +109,18 @@ if (isset($_POST['payment_method'])) {
     }
 }
 
-
-
 get_header();
 
 get_template_part('section-templates/general/general', 'header');
-get_template_part('loop-templates/content', 'payment', $args);
+
+if (isset($args)) {
+    get_template_part('loop-templates/content', 'payment', $args);
+} else {
+    if (isset($_GET['status']) && ($_GET['status'] == 'VERIFIED' || $_GET['status'] == 'APPROVED')) {
+
+        get_template_part('loop-templates/content', 'payment-status', $success);
+    }
+}
+
 
 get_footer();

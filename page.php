@@ -55,4 +55,6 @@ get_template_part('section-templates/general/general', 'header');
 </div><!-- #page-wrapper -->
 
 <?php
+get_template_part('modal-templates/modal', 'contact-us');
+
 get_footer();

@@ -78,7 +78,7 @@ if ((int)get_donation('total', $post->ID)) {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="wrap-donation-content">
+				<div class="wrap-donation-content" id="content_donation">
 					<form action="<?php echo site_url('/pembayaran/'); ?>" method="post" id="payment-form">
 						<div class="row">
 							<div class="col-md-12" id="section_form_donatur">

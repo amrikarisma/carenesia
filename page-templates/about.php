@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: About Template
  *
@@ -9,15 +10,16 @@
  */
 
 // Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 get_header();
 
 
-while ( have_posts() ) :
+while (have_posts()) :
 	the_post();
-	get_template_part( 'section-templates/general/general', 'header' );
-	get_template_part( 'loop-templates/content', 'container' );
+	get_template_part('section-templates/general/general', 'header');
+	get_template_part('loop-templates/content', 'container');
+	get_template_part('modal-templates/modal', 'contact-us');
 endwhile;
 
 get_footer();

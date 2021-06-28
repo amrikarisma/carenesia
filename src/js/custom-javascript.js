@@ -43,9 +43,8 @@ jQuery(function($) {
 		$form.submit(function(e) {
             if($('#payment_method').val() == 'credit_card' && $('[name=token_id]').val() == '') {
                 e.preventDefault();
-                var expiredCard = $form.find('#cc-exp').val();
-                var expSplit = expiredCard.split(" / ");
-                var cardNumber = $('.cc-number').val().replace(/\s+/g, '');
+                hideResults();
+
                 var cardType = $.payment.cardType($('.cc-number').val());
                 $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
                 $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
@@ -53,17 +52,10 @@ jQuery(function($) {
                 $('.cc-brand').text(cardType);
                 $('.validation').removeClass('text-danger text-success');
                 $('.validation').addClass($('.has-error').length ? 'text-danger' : 'text-success');
-                var param_cc = {
-                    amount: $form.find('#nominal').val(),
-                    card_number: cardNumber,
-                    card_exp_month: expSplit[0],
-                    card_exp_year: expSplit[1],
-                    card_cvn: $form.find('#cc-cvc').val(),
-                    is_multiple_use: false,
-                    should_authenticate: true,
-                }
-                console.log(param_cc);
-                Xendit.card.createToken(param_cc, xenditResponseHandler);
+                // Request a token from Xendit:
+                var tokenData = getTokenData();
+
+                Xendit.card.createToken(tokenData, xenditResponseHandler);
                 // Prevent the form from being submitted:
                 return false;
             }
@@ -73,35 +65,107 @@ jQuery(function($) {
             console.log('err: ',err);
             console.log('cc token: ',creditCardToken);
             if (err) {
-                // Show the errors on the form
-                $('#error pre').text(err.message);
-                $('#error').show();
-                $form.find('.submit').prop('disabled', false); // Re-enable submission
-        
-                return;
+                return displayError(err);
             }
-        
-            if (creditCardToken.status === 'VERIFIED') {
-                // Get the token ID:
-                var token = creditCardToken.id;
-        
-                // Insert the token into the form so it gets submitted to the server:
-                $form.append($('<input type="hidden" name="xenditToken" />').val(token));
-        
-                // Submit the form to your server:
-                $form.get(0).submit();
+            if (creditCardToken.status === 'APPROVED' || creditCardToken.status === 'VERIFIED') {
+                displaySuccess(creditCardToken);
             } else if (creditCardToken.status === 'IN_REVIEW') {
                 window.open(creditCardToken.payer_authentication_url, 'sample-inline-frame');
-
+                $('body').css('position', 'relative');
+                $('.modal-donation').addClass('d-none');
+                $('.overlay').show();
                 $('#three-ds-container').show();
-                $('[name=token_id]').val(creditCardToken.id);
-                $('[name=authentication_id]').val(creditCardToken.authentication_id);
-                form.find('.submit').trigger('click');
+            } else if (creditCardToken.status === 'FRAUD') {
+                displayError(creditCardToken);
             } else if (creditCardToken.status === 'FAILED') {
-                $('#error pre').text(creditCardToken.failure_reason);
-                $('#error').show();
-                $form.find('.submit').prop('disabled', false); // Re-enable submission
+                displayError(creditCardToken);
             }
+        }
+        function displayError (err) {
+            $('.modal-donation').removeClass('d-none');
+            $('#three-ds-container').hide();
+            $('.overlay').hide();
+            $('#error .result').text(JSON.stringify(err, null, 4));
+            $('#error').show();
+
+            var requestData = {};
+            $.extend(requestData, getTokenData());
+            $('#error .request-data').text(JSON.stringify(requestData, null, 4));
+
+        };
+
+        function displaySuccess (creditCardToken) {
+            $('.modal-donation').removeClass('d-none');
+            $('.modal-donation').show();
+            $('#three-ds-container').hide();
+            $('.overlay').hide();
+            // $('[name=token_id]').val(creditCardToken.id);
+            // $('[name=authentication_id]').val(creditCardToken.authentication_id);
+            // $('.modal-donation').find('form').trigger('reset');
+            // $('#content_donation').html(messageSuccess(creditCardToken));
+            // $('.modal-donation').show();
+
+            var requestData = {};
+            $.extend(requestData, getTokenData());
+            $('#success .request-data').text(JSON.stringify(requestData, null, 4));
+            return createCharge(creditCardToken);
+
+        }
+
+        function getTokenData () {
+            var expiredCard = $form.find('#cc-exp').val();
+            var expSplit = expiredCard.split(" / ");
+            var cardNumber = $('.cc-number').val().replace(/\s+/g, '');
+            return {
+                amount: $form.find('#nominal').val(),
+                card_number: cardNumber,
+                card_exp_month: expSplit[0],
+                card_exp_year: expSplit[1],
+                card_cvn: $form.find('#cc-cvc').val(),
+                is_multiple_use: $form.find('#bundle-authentication').prop('checked') ? true : false,
+                should_authenticate: $form.find('#skip-authentication').prop('checked') ? false : true,
+                currency: $form.find('#currency').val(),
+                on_behalf_of: $form.find('#on-behalf-of').val(),
+                billing_details: $form.find('#should-send-billing-details').prop('checked') ? getBillingDetails() : undefined,
+                customer: $form.find('#should-send-customer-details').prop('checked') ? getCustomerDetails() : undefined,
+            };
+        }
+        function hideResults() {
+            $('#success').hide();
+            $('#error').hide();
+        }
+
+        function getBillingDetails () {
+            return JSON.parse($form.find('#billing-details').val());
+        }
+
+        function getCustomerDetails () {
+            return JSON.parse($form.find('#customer-details').val());
+        }
+
+        function createCharge(d) {
+            var formData = {
+                'action': 'create_charge',
+                'nominal': $form.find('#nominal').val(),
+                'authentication_id': d.authentication_id,
+                'token_id': d.id,
+            };
+
+            console.log(formData);
+
+            jQuery.ajax({
+                type: "POST",
+                dataType: "json",
+                url: ajax_carenesia.ajaxurl,
+                data: formData,
+                success: function(data){
+                    console.log(data);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    console.log("Status: ", textStatus);
+                    console.log("Error: ", errorThrown); 
+                }    
+            });
         }
         
 	});

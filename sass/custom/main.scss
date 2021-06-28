@@ -135,6 +135,10 @@ article {
 		background-color: rgb(243, 243, 243);
 	}
 }
+.wpcf7 input[type=submit] {
+    background-color: $primary;
+    padding: 7px;
+}
 .wrap-image {
 	position: relative;
 	&:hover {

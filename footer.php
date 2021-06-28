@@ -49,6 +49,11 @@ $container = get_theme_mod('understrap_container_type');
 
 </div><!-- #page we need this extra closing tag here -->
 
+<div class="overlay" style="display: none;"></div>
+<div id="three-ds-container" style="display: none;">
+	<iframe height="450" width="550" id="sample-inline-frame" name="sample-inline-frame"> </iframe>
+</div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
 
 <script type="text/javascript" src="https://js.xendit.co/v1/xendit.min.js"></script>
