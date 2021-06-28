@@ -183,11 +183,20 @@ jQuery(function($) {
                     updateDonation(data);
                     $('.modal-donation').find('form').trigger('reset');
                     $('.modal-donation').modal('hide');
-                    Swal.fire(
-                        'Pembayaran telah berhasil!',
-                        'Tagihan berhasil dibuat di Kartu Kredit anda!',
-                        'success'
-                      )
+                    if(data.status == 'CAPTURED') {
+                        Swal.fire(
+                            'Pembayaran telah berhasil!',
+                            'Tagihan berhasil dibuat di kartu kredit anda!',
+                            'success'
+                          )
+                    } else {
+                        Swal.fire(
+                            'Pembayaran Gagal!',
+                            'Periksa kembali kartu kredit anda!',
+                            'error'
+                          )
+                    }
+      
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) { 
                     console.log("Status: ", textStatus);
