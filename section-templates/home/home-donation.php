@@ -19,7 +19,7 @@
                     if (get_donation('total', $post->ID) && get_field('donation_goals')) {
                         $persentase = number_format((((int)get_donation('total', $post->ID) ?? 0) / ((int)get_field('donation_goals') ?? 0) * 100), 2, '.', '');
                     } else {
-                        $persentase = 0;
+                        $persentase = 100;
                     }
 
                 ?>
