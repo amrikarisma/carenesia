@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying search results pages
  *
@@ -6,44 +7,45 @@
  */
 
 // Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 get_header();
 
-$container = get_theme_mod( 'understrap_container_type' );
+$container = get_theme_mod('understrap_container_type');
+get_template_part('section-templates/general/general', 'header');
 
 ?>
 
 <div class="wrapper" id="search-wrapper">
 
-	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
+	<div class="<?php echo esc_attr($container); ?>" id="content" tabindex="-1">
 
 		<div class="row">
 
 			<!-- Do the left sidebar check and opens the primary div -->
-			<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
+			<?php get_template_part('global-templates/left-sidebar-check'); ?>
 
 			<main class="site-main" id="main">
 
-				<?php if ( have_posts() ) : ?>
+				<?php if (have_posts()) : ?>
 
 					<header class="page-header">
 
-							<h1 class="page-title">
-								<?php
-								printf(
-									/* translators: %s: query term */
-									esc_html__( 'Search Results for: %s', 'understrap' ),
-									'<span>' . get_search_query() . '</span>'
-								);
-								?>
-							</h1>
+						<h1 class="page-title">
+							<?php
+							printf(
+								/* translators: %s: query term */
+								esc_html__('Hasil Pencarian untuk: %s', 'understrap'),
+								'<span>' . get_search_query() . '</span>'
+							);
+							?>
+						</h1>
 
 					</header><!-- .page-header -->
 
 					<?php /* Start the Loop */ ?>
 					<?php
-					while ( have_posts() ) :
+					while (have_posts()) :
 						the_post();
 
 						/*
@@ -51,13 +53,13 @@ $container = get_theme_mod( 'understrap_container_type' );
 						 * If you want to overload this in a child theme then include a file
 						 * called content-search.php and that will be used instead.
 						 */
-						get_template_part( 'loop-templates/content', 'search' );
+						get_template_part('loop-templates/content', 'search');
 					endwhile;
 					?>
 
 				<?php else : ?>
 
-					<?php get_template_part( 'loop-templates/content', 'none' ); ?>
+					<?php get_template_part('loop-templates/content', 'none'); ?>
 
 				<?php endif; ?>
 
@@ -67,7 +69,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 			<?php understrap_pagination(); ?>
 
 			<!-- Do the right sidebar check -->
-			<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
+			<?php get_template_part('global-templates/right-sidebar-check'); ?>
 
 		</div><!-- .row -->
 

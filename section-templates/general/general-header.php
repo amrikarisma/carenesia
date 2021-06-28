@@ -10,7 +10,7 @@ endif;
 <section class="header <?php echo $css; ?>" style="<?php echo $style; ?>">
     <div class="wrap-title">
         <div class="container">
-            <?php the_title('<h2 class="title">', '</h2>'); ?>
+            <h2 class="title"> <?php wp_title('', true); ?></h2>
         </div>
     </div>
 </section>
