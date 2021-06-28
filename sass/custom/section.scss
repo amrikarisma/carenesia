@@ -197,16 +197,21 @@ section {
 			margin-top: 50px;
 			.wrap-planner-text {
 				margin-top: -5px;
-				height: 300px;
-				@media (min-width: 992px) {
-					height: 328px;
+				@media (min-width: 768px) {
+					height: 220px;
 				}
-				@media (min-width: 1024px) {
-					height: 390px;
+				@media (min-width: 992px) {
+					height: 290px;
+				}
+				@media (min-width: 1025px) {
+					height: 347px;
 				}
 				.inner-text-planner {
 					@media (max-width: 767px) {
 						padding: 30px 20px;
+					}
+					@media (min-width: 768px) {
+						padding: 10px;
 					}
 					@media (min-width: 1200px) {
 						width: 50%;
@@ -214,7 +219,7 @@ section {
 					@media (min-width: 992px) {
 						width: 80%;
 					}
-					@media (min-width: 768px) {
+					@media (min-width: 992px) {
 						position: absolute;
 						top: 50%;
 						right: 50%;
@@ -227,6 +232,7 @@ section {
 				}
 				h2 {
 					color: $lightColor;
+					font-size: 20px;
 				}
 				p {
 					color: $lightColor;
@@ -236,11 +242,8 @@ section {
 		.home-planner {
 			.owl-dots {
 				position: absolute;
-				bottom: 40px;
+				bottom: 0;
 				right: 0;
-				@media (min-width: 767px) {
-					bottom: 65px;
-				}
 			}
 		}
 	}
