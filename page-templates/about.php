@@ -19,6 +19,7 @@ while (have_posts()) :
 	the_post();
 	get_template_part('section-templates/general/general', 'header');
 	get_template_part('loop-templates/content', 'container');
+	get_template_part('section-templates/home/home', 'newsletter');
 	get_template_part('modal-templates/modal', 'contact-us');
 endwhile;
 
