@@ -23,7 +23,7 @@
                     <div class="home-planner owl-carousel owl-theme">
                         <?php foreach (get_field('plan')['slider'] ?? [] as $plan_slider) : ?>
                             <div class="item">
-                                <div class="embed-responsive embed-responsive-4by3">
+                                <div class="embed-responsive embed-responsive-16by9">
                                     <div class="embed-responsive-item">
                                         <img src="<?php echo $plan_slider['url']; ?>" alt="">
                                     </div>
