@@ -7108,11 +7108,14 @@ jQuery(function ($) {
 
     $.fn.toggleInputError = function (erred) {
       console.log(erred);
-      this.parent('.form-group').toggleClass('has-error', erred);
+      this.toggleClass('is-invalid', erred);
       return this;
     };
 
     var $form = $('#payment-form');
+    var expiredCard = $form.find('#cc-exp').val();
+    var expSplit = expiredCard.split(" / ");
+    var cardNumber = $('.cc-number').val().replace(/\s+/g, '');
     $form.submit(function (e) {
       if ($('#payment_method').val() == 'credit_card' && $('[name=token_id]').val() == '') {
         e.preventDefault();
@@ -7124,8 +7127,7 @@ jQuery(function ($) {
         $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
         $('.cc-brand').text(cardType);
         $('.validation').removeClass('text-danger text-success');
-        $('.validation').addClass($('.has-error').length ? 'text-danger' : 'text-success'); // Request a token from Xendit:
-
+        $('.validation').addClass($('.has-error').length ? 'text-danger' : 'text-success');
         var tokenData = getTokenData();
         Xendit.card.createToken(tokenData, xenditResponseHandler); // Prevent the form from being submitted:
 
@@ -7176,9 +7178,6 @@ jQuery(function ($) {
     }
 
     function getTokenData() {
-      var expiredCard = $form.find('#cc-exp').val();
-      var expSplit = expiredCard.split(" / ");
-      var cardNumber = $('.cc-number').val().replace(/\s+/g, '');
       return {
         amount: $form.find('#nominal').val(),
         card_number: cardNumber,

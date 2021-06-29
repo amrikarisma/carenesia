@@ -137,31 +137,37 @@ if (get_donation('total', $post->ID) && get_field('donation_goals')) {
 								<div class="card">
 									<div class="card-header">
 										<div class="row">
-											<div class="col-md-6"> <span>CREDIT/DEBIT CARD PAYMENT</span> </div>
+											<div class="col-md-6"> <span>PEMBAYARAN KARTU KREDIT/DEBIT</span> </div>
 											<div class="col-md-6 text-right" style="margin-top: -5px;"> <img src="https://img.icons8.com/color/36/000000/visa.png"> <img src="https://img.icons8.com/color/36/000000/mastercard.png"> <img src="https://img.icons8.com/color/36/000000/amex.png"> </div>
 										</div>
 									</div>
 									<div class="card-body" style="height: 350px">
 										<div class="form-group">
-											<label for="cc-number" class="control-label">CARD NUMBER</label>
+											<label for="cc-number" class="control-label">NO. KARTU</label>
 											<input id="cc-number" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••">
+											<div class="valid-feedback">Valid.</div>
+											<div class="invalid-feedback">Cek Kembali No. Kartu Kredit Anda.</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="cc-exp" class="control-label">CARD EXPIRY</label>
+													<label for="cc-exp" class="control-label">KEDALUARSA KARTU</label>
 													<input id="cc-exp" type="tel" class="input-lg form-control cc-exp" autocomplete="cc-exp" placeholder="•• / ••">
+													<div class="valid-feedback">Valid.</div>
+													<div class="invalid-feedback">Cek Kembali No. Kedaluarsa Kartu.</div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="cc-cvc" class="control-label">CARD CVC</label>
+													<label for="cc-cvc" class="control-label">NO. CVC</label>
 													<input id="cc-cvc" type="tel" class="input-lg form-control cc-cvc" name="cc-cvc" autocomplete="off" placeholder="••••">
+													<div class="valid-feedback">Valid.</div>
+													<div class="invalid-feedback">Cek Kembali No. CVC Kartu Anda.</div>
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="numeric" class="control-label">CARD HOLDER NAME</label>
+											<label for="numeric" class="control-label">NAMA PEMEGANG KARTU</label>
 											<input type="text" class="input-lg form-control">
 										</div>
 									</div>
