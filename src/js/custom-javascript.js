@@ -42,8 +42,10 @@ jQuery(function($) {
 		};
         var $form = $('#payment-form');
         var expiredCard = $form.find('#cc-exp').val();
-        var expSplit = expiredCard.split(" / ");
-        var cardNumber = $('.cc-number').val().replace(/\s+/g, '');
+        if(expiredCard) {
+            var expSplit = expiredCard.split(" / ");
+            var cardNumber = $('.cc-number').val().replace(/\s+/g, '');
+        }
 
 		$form.submit(function(e) {
             if($('#payment_method').val() == 'credit_card' && $('[name=token_id]').val() == '') {
