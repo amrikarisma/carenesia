@@ -72,7 +72,7 @@ function get_donation($condition, $value = null)
     if ($condition == 'post_id') {
         $query = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}transactions where `post_id` = {$value} ");
     } elseif ($condition == 'total') {
-        $query = $wpdb->get_var("SELECT SUM(transaction_amount) FROM {$wpdb->prefix}transactions where `transaction_post_id` = {$value} AND `transaction_status` = 'PAID' OR `transaction_status` = 'CAPTURED' ");
+        $query = $wpdb->get_var("SELECT SUM(transaction_amount) FROM {$wpdb->prefix}transactions where `transaction_post_id` = {$value} AND (`transaction_status` = 'PAID' OR `transaction_status` = 'CAPTURED') ");
     }
     $results = $query;
     return $results;

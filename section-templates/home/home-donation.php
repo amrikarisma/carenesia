@@ -16,8 +16,8 @@
                 $loop = new WP_Query($args);
                 while ($loop->have_posts()) :
                     $loop->the_post();
-                    if (get_donation('total', $loop->ID) && get_field('donation_goals')) {
-                        $persentase = number_format((((int)get_donation('total', $loop->ID) ?? 0) / ((int)get_field('donation_goals') ?? 0) * 100), 2, '.', '');
+                    if (get_donation('total', get_the_ID()) && get_field('donation_goals')) {
+                        $persentase = number_format((((int)get_donation('total', get_the_ID()) ?? 0) / ((int)get_field('donation_goals') ?? 0) * 100), 2, '.', '');
                     } else if (get_field('donation_goals')) {
                         $persentase = 0;
                     } else {
@@ -53,7 +53,7 @@
                                         <div class="progress-bar" role="progressbar" style="width: <?php echo $persentase ?>%" aria-valuenow="<?php echo $persentase ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <div class="d-flex justify-content-between mt-3">
-                                        <div>Raised: <strong>Rp. <?php echo number_format(get_donation('total', $post->ID) ?? 0, 0, ',', '.'); ?></strong></div>
+                                        <div>Raised: <strong>Rp. <?php echo number_format(get_donation('total', get_the_ID()) ?? 0, 0, ',', '.'); ?></strong></div>
                                         <div>Goal: <strong>Rp. <?php echo number_format(get_field('donation_goals') ?? 0, 0, ',', '.'); ?></strong></div>
                                     </div>
                                 </div>
