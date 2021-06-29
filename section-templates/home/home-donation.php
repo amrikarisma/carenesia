@@ -16,8 +16,8 @@
                 $loop = new WP_Query($args);
                 while ($loop->have_posts()) :
                     $loop->the_post();
-                    if (get_donation('total', $post->ID) && get_field('donation_goals')) {
-                        $persentase = number_format((((int)get_donation('total', $post->ID) ?? 0) / ((int)get_field('donation_goals') ?? 0) * 100), 2, '.', '');
+                    if (get_donation('total', $loop->ID) && get_field('donation_goals')) {
+                        $persentase = number_format((((int)get_donation('total', $loop->ID) ?? 0) / ((int)get_field('donation_goals') ?? 0) * 100), 2, '.', '');
                     } else if (get_field('donation_goals')) {
                         $persentase = 0;
                     } else {
