@@ -173,6 +173,12 @@ section {
 				line-height: 0.98em;
 				font-weight: 700;
 				margin-bottom: 16px;
+				@media (min-width: 1024px) {
+					font-size: 40px;
+				}
+				@media (min-width: 1200px) {
+					font-size: 50px;
+				}
 			}
 			.note {
 				font-family: "Merriweather", serif;
