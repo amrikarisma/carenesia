@@ -1,6 +1,6 @@
 <?php
 if (has_post_thumbnail()) :
-    $style = "background-image:url('" . get_the_post_thumbnail_url(get_the_ID(), 'full') . "');height: 280px;background-size: cover;background-position-y: -65px;";
+    $style = "background-image:url('" . get_the_post_thumbnail_url(get_the_ID(), 'full') . "');height: 280px;background-size: cover;background-position-y: center;";
     $css = '';
 else :
     $style = "background-color:#f6f4ee;    height: 280px;";
