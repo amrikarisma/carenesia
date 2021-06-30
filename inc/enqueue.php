@@ -20,6 +20,7 @@ if (!function_exists('understrap_scripts')) {
 		$theme_version = $the_theme->get('Version');
 		$css_version = $theme_version . '.' . filemtime(get_template_directory() . '/css/theme.min.css');
 
+		wp_enqueue_style('lightbox-styles', 'https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css', array(), $css_version);
 		wp_enqueue_style('carousel-theme-styles', get_template_directory_uri() . '/css/owl.theme.default.min.css', array(), $css_version);
 		wp_enqueue_style('carousel-styles', get_template_directory_uri() . '/css/owl.carousel.min.css', array(), $css_version);
 
@@ -30,6 +31,7 @@ if (!function_exists('understrap_scripts')) {
 		$js_version = $theme_version . '.' . filemtime(get_template_directory() . '/js/theme.min.js');
 
 		wp_enqueue_script('sweetalert2', '//cdn.jsdelivr.net/npm/sweetalert2@11', array(), $js_version, true);
+		wp_enqueue_script('lightbox-scripts', 'https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js', array(), $js_version, true);
 		wp_enqueue_script('carousel-scripts', get_template_directory_uri() . '/js/owl.carousel.min.js', array(), $js_version, true);
 		wp_enqueue_script('understrap-scripts', get_template_directory_uri() . '/js/theme.min.js', array(), $js_version, true);
 

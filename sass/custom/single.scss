@@ -135,8 +135,11 @@ article {
         }
     }
     .wrapper-tim-gallery {
-        padding:135px 0px 105px 0px;
+        padding:40px 0px 40px 0px;
         background-color: #F6F4EE;
+        @media(min-width: 992px) {
+            padding:135px 0px 105px 0px;
+        }
     }
     #single-wrapper {
         padding-bottom: 0;
