@@ -77,6 +77,7 @@ function get_donation($condition, $value = null)
     $results = $query;
     return $results;
 }
+
 function update_donation($data)
 {
     global $wpdb;
