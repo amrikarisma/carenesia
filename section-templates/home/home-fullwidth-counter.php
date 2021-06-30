@@ -4,30 +4,14 @@
     background-size: cover;">
     <div class="container">
         <div class="row">
-            <div class="col-md">
-                <div class="wrap-counter">
-                    <div class="count">1259</div>
-                    <div class="note">Donations</div>
+            <?php foreach (get_field('counter_section')['item'] ?? [] as $counter) : ?>
+                <div class="col-md-6 col-lg-3">
+                    <div class="wrap-counter">
+                        <div class="count"><?php echo $counter['value']; ?></div>
+                        <div class="note"><?php echo $counter['name']; ?></div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md">
-                <div class="wrap-counter">
-                    <div class="count">730</div>
-                    <div class="note">Volunteers</div>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="wrap-counter">
-                    <div class="count">827</div>
-                    <div class="note">Projects</div>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="wrap-counter">
-                    <div class="count">460</div>
-                    <div class="note">Projects</div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

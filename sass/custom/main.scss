@@ -29,14 +29,14 @@ a, p a {
 		text-decoration: none;
 	}
 }
-a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
-    background: 0 0;
-    border: 0;
-    margin: 0;
-    padding: 0;
-    vertical-align: baseline;
-    outline: 0;
-}
+// a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, ins, kbd, label, legend, li, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var {
+//     background: 0 0;
+//     border: 0;
+//     margin: 0;
+//     padding: 0;
+//     vertical-align: baseline;
+//     outline: 0;
+// }
 .form-control, 
 .widget_archive select, 
 .widget_categories select, 
@@ -60,11 +60,17 @@ a, abbr, acronym, address, applet, b, big, blockquote, body, caption, center, ci
     -webkit-appearance: none;
     border-radius: 5px;
 }
+#s {
+	padding: 23px 23px;
+}
 select.form-control {
     padding: 5px 20px;
 }
 #respond input:focus[type=text], #respond textarea:focus, .post-password-form input:focus[type=password], .wpcf7-form-control.wpcf7-date:focus, .wpcf7-form-control.wpcf7-number:focus, .wpcf7-form-control.wpcf7-quiz:focus, .wpcf7-form-control.wpcf7-select:focus, .wpcf7-form-control.wpcf7-text:focus, .wpcf7-form-control.wpcf7-textarea:focus {
 	border: 1px solid #e0e0e0;
+}
+ul.post-categories {
+    list-style: none;
 }
 .container {
 	max-width: 1300px;
@@ -77,6 +83,37 @@ article {
 	.entry-content {
 		padding-top: 70px;
 		padding-bottom: 70px;
+	}
+}
+.footer-widget,
+.entry-content {
+
+	ul {
+		list-style-type: none;
+		margin-bottom: 15px;
+	}
+	ul > li {
+		padding-left: 26px;
+		padding-bottom: 9px;
+		position: relative;
+		font-family: inherit;
+		&::before {
+			height: 5px;
+			width: 5px;
+			display: inline-block;
+			position: absolute;
+			left: 0;
+			top: 10.5px;
+			padding: 0;
+			background-color: $primary;
+			text-align: center;
+			content: '';
+		}
+	}
+}
+.textwidget {
+	p {
+		margin-bottom: 20px;
 	}
 }
 
@@ -100,6 +137,10 @@ article {
 		border-color: rgb(243, 243, 243);
 		background-color: rgb(243, 243, 243);
 	}
+}
+.wpcf7 input[type=submit] {
+    background-color: $primary;
+    padding: 7px;
 }
 .wrap-image {
 	position: relative;

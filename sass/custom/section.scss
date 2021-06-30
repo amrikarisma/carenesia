@@ -3,12 +3,24 @@ section {
 		.wrapper-banner-text {
 			h3.title {
 				color: $lightColor;
+				font-size: 18px;
 				margin-bottom: 30px;
-				font-size: 25px;
 				line-height: 1.2em;
-				@media (min-width: 992px) {
-					font-size: 35px;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				@media (min-width: 768px) {
+					font-size: 18px;
+					-webkit-line-clamp: 3;
+				}
+				@media (min-width: 1200px) {
+					font-size: 25px;
+					-webkit-line-clamp: 4;
 					margin-bottom: 20px;
+				}
+				@media (min-width: 1400px) {
+					font-size: 35px;
+					-webkit-line-clamp: 5;
 				}
 			}
 			position: absolute;
@@ -64,6 +76,13 @@ section {
 				color: $lightColor;
 				padding-top: 30px;
 				padding-bottom: 30px;
+				font-size: 18px;
+				@media (min-width: 768px) {
+					font-size: 18px;
+				}
+				@media (min-width: 992px) {
+					font-size: 30px;
+				}
 			}
 			p {
 				color: $lightColor;
@@ -86,6 +105,36 @@ section {
 		}
 		.wrap-list-donation {
 			padding-top: 30px;
+			.list-donation-box {
+				color: inherit;	
+			}
+			.wrap-donation-image {
+				position: relative;
+				overflow: hidden;
+				&:hover {
+					.wrap-button-donation {
+						-webkit-transform: translateY(0);
+						-moz-transform: translateY(0);
+						transform: translateY(0);
+					}
+				}
+			}
+			.wrap-button-donation {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				padding: 25px;
+				box-sizing: border-box;
+				background-color: rgba(0,0,0,.4);
+				text-align: center;
+				-webkit-transform: translateY(100%);
+				-moz-transform: translateY(100%);
+				transform: translateY(100%);
+				-webkit-transition: -webkit-transform .35s cubic-bezier(.14,.41,.58,1);
+				transition: transform .35s cubic-bezier(.14,.41,.58,1);
+				z-index: 10;
+			}
 			.wrap-donation-text {
 				font-size: 14px;
 				background-color: $softlightColor;
@@ -120,10 +169,16 @@ section {
 			padding: 30px 10px;
 			.count {
 				font-family: "Merriweather", serif;
-				font-size: 80px;
+				font-size: 50px;
 				line-height: 0.98em;
 				font-weight: 700;
 				margin-bottom: 16px;
+				@media (min-width: 1024px) {
+					font-size: 40px;
+				}
+				@media (min-width: 1200px) {
+					font-size: 50px;
+				}
 			}
 			.note {
 				font-family: "Merriweather", serif;
@@ -148,13 +203,21 @@ section {
 			margin-top: 50px;
 			.wrap-planner-text {
 				margin-top: -5px;
-				height: 300px;
+				@media (min-width: 768px) {
+					height: 220px;
+				}
 				@media (min-width: 992px) {
-					height: 415px;
+					height: 290px;
+				}
+				@media (min-width: 1025px) {
+					height: 347px;
 				}
 				.inner-text-planner {
 					@media (max-width: 767px) {
 						padding: 30px 20px;
+					}
+					@media (min-width: 768px) {
+						padding: 10px;
 					}
 					@media (min-width: 1200px) {
 						width: 50%;
@@ -162,7 +225,7 @@ section {
 					@media (min-width: 992px) {
 						width: 80%;
 					}
-					@media (min-width: 768px) {
+					@media (min-width: 992px) {
 						position: absolute;
 						top: 50%;
 						right: 50%;
@@ -175,10 +238,18 @@ section {
 				}
 				h2 {
 					color: $lightColor;
+					font-size: 20px;
 				}
 				p {
 					color: $lightColor;
 				}
+			}
+		}
+		.home-planner {
+			.owl-dots {
+				position: absolute;
+				bottom: 0;
+				right: 0;
 			}
 		}
 	}
@@ -202,7 +273,7 @@ section {
 			width: 0;
 			height: 0;
 			border-right: 9px solid transparent;
-			border-top: 15px solid #ffb422;
+			border-top: 15px solid #769126;
 			border-left: 9px solid transparent;
 		}
 		.testimoni-author {
@@ -229,6 +300,9 @@ section {
 		background-color: $secondary;
 		h2 {
 			color: $lightColor;
+			@media (max-width: 767px) {
+				font-size: 21px;
+			}
 		}
 	}
 	&.member {
@@ -247,7 +321,7 @@ section {
 				border-bottom-width: 3px;
 				margin-top: 31px;
 				margin-bottom: 35px;
-				border-bottom: 2px solid #ffb422;
+				border-bottom: 2px solid #769126;
 				margin: 5px auto;
 			}
 		}
@@ -294,4 +368,5 @@ section {
 			}
 		}
 	}
+
 }

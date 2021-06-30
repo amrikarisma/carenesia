@@ -4,7 +4,10 @@
             <img src="<?php echo $slider['image']['url'] ?>" alt="<?php echo $slider['image']['title'] ?? '' ?>">
             <div class="slider-wrapper-text">
                 <div class="title"><?php echo $slider['title'] ?? '' ?></div>
-                <div class="caption"><?php echo $slider['caption'] ?? '' ?></div>
+                <div class="caption">
+                    <p><?php echo $slider['caption'] ?? '' ?>
+                    <p>
+                </div>
                 <a href="<?php echo $slider['url']; ?>" class="btn btn-outline-primary"><?php echo $slider['button_text'] ?? '' ?></a>
             </div>
         </div>

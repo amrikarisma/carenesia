@@ -45,28 +45,7 @@ article {
         p {
             margin-bottom: 25px;
         }
-        ul {
-            list-style-type: none;
-            margin-bottom: 15px;
-        }
-        ul > li {
-            padding-left: 26px;
-            padding-bottom: 9px;
-            position: relative;
-            font-family: inherit;
-            &::before {
-                height: 5px;
-                width: 5px;
-                display: inline-block;
-                position: absolute;
-                left: 0;
-                top: 10.5px;
-                padding: 0;
-                background-color: $primary;
-                text-align: center;
-                content: '';
-            }
-        }
+
     }
 
 }
@@ -120,6 +99,11 @@ article {
         .wrapper-progress {
             margin-bottom: 15px;
             overflow: hidden;
+            &:last-child {
+                @media (min-width: 992px) {
+                    margin-bottom: 40px;
+                }
+            }
             .progress-persentase {
                 display: flex;
                 justify-content: space-between;
@@ -156,8 +140,11 @@ article {
         }
     }
     .wrapper-tim-gallery {
-        padding:135px 0px 105px 0px;
+        padding:40px 0px 40px 0px;
         background-color: #F6F4EE;
+        @media(min-width: 992px) {
+            padding:135px 0px 105px 0px;
+        }
     }
     #single-wrapper {
         padding-bottom: 0;

@@ -1,0 +1,48 @@
+.wrap-qr-code {
+    .qr-code {
+        border: 1px solid;
+        padding: 20px;
+        max-width: 340px;
+    }
+}
+
+.modal-donation {
+    .modal-dialog {
+        &.credit-card-form-active {
+            @media(min-width: 992px) {
+                max-width: 800px;
+            }
+        }
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+#three-ds-container {
+    width: 550px;
+    height: 450px;
+    line-height: 200px;
+    position: fixed;
+    top: 25%;
+    left: 40%;
+    margin-top: -100px;
+    margin-left: -150px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1051; /* 1px higher than the overlay layer */
+}
+
+#credit_card_form {
+    .form-control {
+        margin-bottom: 0;
+    }
+}

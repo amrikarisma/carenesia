@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single post partial template
  *
@@ -6,151 +7,102 @@
  */
 
 // Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
-$container = get_theme_mod( 'understrap_container_type' );
+defined('ABSPATH') || exit;
+$container = get_theme_mod('understrap_container_type');
 
 ?>
 
-
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
-	<div class="<?php echo esc_attr( $container ); ?>">
+	<div class="<?php echo esc_attr($container); ?>">
 
 		<div class="row">
 			<div class="col-md">
 				<div class="wrap-featured-iamge">
-					<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+					<?php echo get_the_post_thumbnail($post->ID, 'large'); ?>
 				</div>
 
 				<div class="additional-info">
-					<div class="wrap-additional-info-title">
-						<h3>My Skills</h3>
-					</div>
-					<div class="wrap-additional-content">
-						<p>Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei. Mei an pericula euripidis, hinc partem ei est. Eos ei nisl graecis, vix aperiri consequat an. Eius lorem tincidunt vix at, vel pertinax</p>
-					</div>
-					<div class="wrapper-progress">
-						<div class="progress-persentase">
-							<div class="progress-title">
-							Leadership
+					<?php if (isset(get_field('detail')['simple_description']['title'])) : ?>
+						<div class="wrap-additional-info-title">
+							<h3><?php echo get_field('detail')['simple_description']['title']; ?></h3>
+						</div>
+					<?php endif; ?>
+					<?php if (isset(get_field('detail')['simple_description']['content'])) : ?>
+						<div class="wrap-additional-content">
+							<p><?php echo get_field('detail')['simple_description']['content']; ?></p>
+						</div>
+					<?php endif; ?>
+					<?php foreach (get_field('detail')['progress_bar'] ?? [] as $progress_bar) : ?>
+						<div class="wrapper-progress">
+							<div class="progress-persentase">
+								<div class="progress-title">
+									<?php echo $progress_bar['text'] ?? ''; ?>
+								</div>
+								<h6 style="left:<?php echo $progress_bar['score'] ?? 0; ?>%"><?php echo $progress_bar['score'] ?? 0; ?>%</h6>
 							</div>
-							<h6 style="left:98%">98%</h6>
-						</div>
-						<div class="progress">
-							<div style="width:98%" class="progress-bar" role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
-					<div class="wrapper-progress">
-						<div class="progress-persentase">
-							<div class="progress-title">
-							Leadership
+							<div class="progress">
+								<div style="width:<?php echo $progress_bar['score'] ?? 0; ?>%" class="progress-bar" role="progressbar" aria-valuenow="<?php echo $progress_bar['score'] ?? 0; ?>" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
-							<h6 style="left:75%">75%</h6>
 						</div>
-						<div class="progress">
-							<div style="width:75%" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
+					<?php endforeach; ?>
 				</div>
 
 			</div>
 			<div class="col-md">
 
 				<header class="entry-header">
-			
-					<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
-					<div class="tim-position">Community and Event Fundraising Officer – Mr Charity</div>
-			
 
-			
+					<?php the_title('<h2 class="entry-title">', '</h2>'); ?>
+					<div class="tim-position"><?php echo get_field('detail')['from'] ?? ''; ?> – <?php echo get_field('detail')['position'] ?? ''; ?></div>
+
 				</header><!-- .entry-header -->
 				<div class="entry-content">
-			
+
 					<?php the_content(); ?>
-			
+
 					<div class="tim-contact-detail">
-						<div class="wrap-title-contact-detail"><h3>Contact details</h3></div>
+						<div class="wrap-title-contact-detail">
+							<h3><?php echo get_field('detail')['contact_title'] ?? ''; ?></h3>
+						</div>
 						<div class="wrap-contact-item">
-							<div class="list-contact-item">
-								<div class="row">
-									<div class="col-4"><h5>Phone:</h5></div>
-									<div class="col">+ 0990 564 67967</div>
-								</div>
-							</div>
-							<div class="list-contact-item">
-								<div class="row">
-									<div class="col-4"><h5>Email:</h5></div>
-									<div class="col">jonna.carter@charity.com</div>
-								</div>
-							</div>
-							<div class="list-contact-item">
-								<div class="row">
-									<div class="col-4"><h5>Birthday:</h5></div>
-									<div class="col">September 19, 1986</div>
-								</div>
-							</div>
-							<div class="list-contact-item">
-								<div class="row">
-									<div class="col-4"><h5>Location:</h5></div>
-									<div class="col">London</div>
-								</div>
-							</div>
-							<div class="list-contact-item">
-								<div class="row">
-									<div class="col-4"><h5>Experience:</h5></div>
-									<div class="col">
-										<ul style="list-style-type: none;">
-											<li>PQASSO Programme</li>
-											<li>PQASSO Programme</li>
-											<li>Head of Volunteering</li>
-											<li>PQASSO Programme</li>
-											<li>PQASSO Programme</li>
-											<li>PQASSO Programme</li>
-											<li>PQASSO Programme</li>
-											<li>PQASSO Programme</li>
-										</ul>
+							<?php foreach (get_field('detail')['contact'] ?? [] as $contact) : ?>
+
+								<div class="list-contact-item">
+									<div class="row">
+										<div class="col-4">
+											<h5><?php echo $contact['key']; ?>:</h5>
+										</div>
+										<div class="col"><?php echo $contact['value']; ?></div>
 									</div>
 								</div>
-							</div>
-							<div class="list-contact-item">
-								<div class="row">
-									<div class="col-4"></div>
-									<div class="col"></div>
-								</div>
-							</div>
+							<?php endforeach; ?>
+
 						</div>
 
 					</div>
-			
+
 				</div><!-- .entry-content -->
-			
+
 				<footer class="entry-footer">
-			
+
 					<?php understrap_entry_footer(); ?>
-			
+
 				</footer><!-- .entry-footer -->
 
 			</div>
 		</div>
-		
+
 	</div>
 	<div class="wrapper-tim-gallery">
-		<div class="<?php echo esc_attr( $container ); ?>">
+		<div class="<?php echo esc_attr($container); ?>">
 			<div class="row">
-				<div class="col-md-4">
-					<a href="#">
-						<img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/04/team-member-img-2.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-4">
-					<a href="#">
-						<img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/04/team-member-img-3.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-4">
-					<a href="#">
-						<img src="https://goodwish.qodeinteractive.com/elementor/wp-content/uploads/2017/04/team-member-img-4.jpg" alt="">
-					</a>
-				</div>
+				<?php foreach (get_field('detail')['gallery'] ?? [] as $gallery) : ?>
+					<div class="col-md-4 p-4">
+						<a href="<?php echo $gallery['url']; ?>" title="<?php echo $gallery['title']; ?>" data-toggle="lightbox">
+							<img class="img-fluid" width="<?php echo $gallery['width']; ?>" height="<?php echo $gallery['height']; ?>" src="<?php echo $gallery['url']; ?>" alt="<?php echo $gallery['title']; ?>">
+						</a>
+					</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</div>
