@@ -99,6 +99,11 @@ article {
         .wrapper-progress {
             margin-bottom: 15px;
             overflow: hidden;
+            &:last-child {
+                @media (min-width: 992px) {
+                    margin-bottom: 40px;
+                }
+            }
             .progress-persentase {
                 display: flex;
                 justify-content: space-between;
