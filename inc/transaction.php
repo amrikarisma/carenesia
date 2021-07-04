@@ -22,6 +22,9 @@ add_action('wp_ajax_nopriv_create_donation', 'create_donation_ajax');
 add_action('wp_ajax_update_donation',  'update_donation_ajax');
 add_action('wp_ajax_nopriv_update_donation', 'update_donation_ajax');
 
+add_action('wp_ajax_manual_confirmation',  'manual_confirmation_ajax');
+add_action('wp_ajax_nopriv_manual_confirmation', 'manual_confirmation_ajax');
+
 function app_create_transactions_db()
 {
     global $wpdb;
@@ -51,7 +54,15 @@ function app_create_transactions_db()
 
 function add_donation($data)
 {
+
     global $wpdb;
+
+    $query = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}transactions where `transaction_status` = 'PENDING' AND `transaction_external_id` = '{$data['external_id']}' ");
+
+    if (!empty($query)) {
+        return false;
+    }
+
     return $wpdb->insert($wpdb->prefix . 'transactions', array(
         'transaction_post_id' => $data['post_id'],
         'transaction_amount' => $data['amount'],
@@ -70,9 +81,13 @@ function get_donation($condition, $value = null)
 {
     global $wpdb;
     if ($condition == 'post_id') {
-        $query = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}transactions where `post_id` = {$value} ");
+        $query = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}transactions where `post_id` = '{$value}' ");
     } elseif ($condition == 'total') {
-        $query = $wpdb->get_var("SELECT SUM(transaction_amount) FROM {$wpdb->prefix}transactions where `transaction_post_id` = {$value} AND (`transaction_status` = 'PAID' OR `transaction_status` = 'CAPTURED') ");
+        $query = $wpdb->get_var("SELECT SUM(transaction_amount) FROM {$wpdb->prefix}transactions where `transaction_post_id` = '{$value}' AND (`transaction_status` = 'PAID' OR `transaction_status` = 'CAPTURED') ");
+    } elseif ($condition == 'check') {
+        $query = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}transactions where `transaction_status` = 'PENDING' AND `transaction_external_id` = '{$value}' ");
+    } elseif ($condition == 'needconfirm') {
+        $query = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}transactions where `transaction_status` = 'PENDING' AND `transaction_image` IS NOT NULL ");
     }
     $results = $query;
     return $results;
@@ -93,11 +108,15 @@ function update_donation($data)
     if (isset($data['paid_date'])) {
         $param['transaction_paid_date'] = $data['paid_date'];
     }
+    if (isset($data['image'])) {
+        $param['transaction_image'] = $data['image'];
+    }
 
     $results = $wpdb->update($wpdb->prefix . 'transactions', $param, array(
         // where clause
         'transaction_external_id' => $data['external_id']
     ));
+
     return json_encode($results);
 }
 function delete_donation()
@@ -120,7 +139,6 @@ function create_donation_ajax()
         'bank'    => $_POST['bank'],
         'status'    => $_POST['status'],
         'external_id'    => $_POST['external_id'],
-        // 'transaction_paid_date' => $_POST['paid_date']
     ]);
 
     echo $store_donation;
@@ -135,5 +153,39 @@ function update_donation_ajax()
     ]);
 
     echo $update;
+    wp_die();
+}
+
+function manual_confirmation_ajax()
+{
+    global $wpdb;
+
+    $query = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}transactions where `transaction_status` = 'PENDING' AND `transaction_external_id` = '{$_POST['external_id']}' ");
+    if (empty($query)) {
+        $data = [
+            'status'    => 'failed',
+            'message'   => 'data not found'
+        ];
+        echo json_encode($data);
+        wp_die();
+    }
+    $update = update_donation([
+        'external_id'   => $_POST['external_id'],
+        'status'    => $_POST['status'],
+        'paid_date'    => current_time('mysql'),
+    ]);
+
+    if ($update) {
+        $data = [
+            'status'    => 'success',
+            'message'   => 'success update status'
+        ];
+    } else {
+        $data = [
+            'status'    => 'failed',
+            'message'   => 'failed update status',
+        ];
+    }
+    echo json_encode($data);
     wp_die();
 }

@@ -9,6 +9,10 @@
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 
+if (!session_id()) {
+	session_start();
+}
+
 // UnderStrap's includes directory.
 $understrap_inc_dir = get_template_directory() . '/inc';
 
@@ -30,6 +34,7 @@ $understrap_includes = array(
 	'/deprecated.php',                      // Load deprecated functions.
 	'/transaction.php',                      // Load transaction functions.
 	'/donation.php',                      // Load donation functions.
+	'/payment.php',                      // Load donation functions.
 );
 
 // Load WooCommerce functions if WooCommerce is activated.

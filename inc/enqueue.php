@@ -45,5 +45,27 @@ if (!function_exists('understrap_scripts')) {
 		}
 	}
 } // End of if function_exists( 'understrap_scripts' ).
+if (!function_exists('admin_understrap_scripts')) {
+	/**
+	 * Load theme's JavaScript and CSS sources.
+	 */
+	function admin_understrap_scripts()
+	{
+		// Get the theme data.
+		$the_theme     = wp_get_theme();
+		$theme_version = $the_theme->get('Version');
+
+		$js_version = $theme_version . '.' . filemtime(get_template_directory() . '/js/theme.min.js');
+
+		wp_enqueue_script('sweetalert2', '//cdn.jsdelivr.net/npm/sweetalert2@11', array(), $js_version, true);
+		wp_enqueue_script('admin-understrap-scripts', get_template_directory_uri() . '/js/admin-theme.js', array(), $js_version, true);
+
+		wp_localize_script('admin-understrap-scripts', 'ajax_carenesia', array(
+			'ajaxurl' => admin_url('admin-ajax.php'),
+			'security' => wp_create_nonce('carenesia')
+		));
+	}
+} // End of if function_exists( 'understrap_scripts' ).
 
 add_action('wp_enqueue_scripts', 'understrap_scripts');
+add_action('admin_enqueue_scripts', 'admin_understrap_scripts');

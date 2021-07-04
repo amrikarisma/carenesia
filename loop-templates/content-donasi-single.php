@@ -35,10 +35,10 @@ if (get_donation('total', $post->ID) && get_field('donation_goals')) {
 		</div>
 		<div class="progress-wrap-nominal">
 			<div class="float-left">
-				<h6>Raised:</h6> <span>Rp. <?php echo number_format(get_donation('total', $post->ID) ?? 0, 0, ',', '.'); ?></span>
+				<h6>Terkumpul:</h6> <span>Rp. <?php echo number_format(get_donation('total', $post->ID) ?? 0, 0, ',', '.'); ?></span>
 			</div>
 			<div class="float-right">
-				<h6>Goal:</h6> <span>Rp. <?php echo number_format(get_field('donation_goals') ?? 0, 0, ',', '.'); ?></span>
+				<h6>Target:</h6> <span>Rp. <?php echo number_format(get_field('donation_goals') ?? 0, 0, ',', '.'); ?></span>
 			</div>
 		</div>
 	</div>
@@ -82,6 +82,7 @@ if (get_donation('total', $post->ID) && get_field('donation_goals')) {
 				</div>
 				<div class="wrap-donation-content" id="content_donation">
 					<form action="<?php echo site_url('/pembayaran/'); ?>" method="post" id="payment-form">
+						<input type="hidden" name="_unique_id_donation" value="<?php echo sha1(md5(rand(100, 9999))); ?>">
 						<div class="row">
 							<div class="col-md-12" id="section_form_donatur">
 								<div class="form-row">
@@ -118,7 +119,8 @@ if (get_donation('total', $post->ID) && get_field('donation_goals')) {
 										<select class="form-control" name="payment_method" id="payment_method">
 											<option value="">Pilih Metode Pembayaran</option>
 											<option value="credit_card">Kartu Kredit</option>
-											<option value="bank">Transfer Bank</option>
+											<option value="bank">Transfer Virtual Account</option>
+											<option value="transfer">Transfer Bank (Konfirmasi Manual)</option>
 										</select>
 									</div>
 									<div class="col-md-12 mb-3" id="wrap_va_banks" style="display: none;">

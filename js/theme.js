@@ -7113,13 +7113,6 @@ jQuery(function ($) {
     };
 
     var $form = $('#payment-form');
-    var expiredCard = $form.find('#cc-exp').val();
-
-    if (expiredCard) {
-      var expSplit = expiredCard.split(" / ");
-      var cardNumber = $('.cc-number').val().replace(/\s+/g, '');
-    }
-
     $form.submit(function (e) {
       if ($('#payment_method').val() == 'credit_card' && $('[name=token_id]').val() == '') {
         e.preventDefault();
@@ -7168,6 +7161,7 @@ jQuery(function ($) {
       $('.modal-donation').removeClass('d-none');
       $('#three-ds-container').hide();
       $('.overlay').hide();
+      Swal.fire('Pembayaran Gagal!', err.message, 'error');
     }
 
     ;
@@ -7182,6 +7176,13 @@ jQuery(function ($) {
     }
 
     function getTokenData() {
+      var expiredCard = $form.find('#cc-exp').val();
+
+      if (expiredCard) {
+        var expSplit = expiredCard.split(" / ");
+        var cardNumber = $('.cc-number').val().replace(/\s+/g, '');
+      }
+
       return {
         amount: $form.find('#nominal').val(),
         card_number: cardNumber,
@@ -7329,12 +7330,18 @@ jQuery(function ($) {
         $('.modal-donation ').find('.modal-dialog').removeClass('credit-card-form-active');
         $('.modal-donation ').find('#section_form_donatur').removeClass('col-md-6');
         $('.modal-donation ').find('#section_form_donatur').addClass('col-md-12');
-      } else {
+      } else if ($(this).val() == 'credit_card') {
         $('#wrap_va_banks').css('display', 'none');
         $('#credit_card_form').css('display', 'block');
         $('.modal-donation ').find('.modal-dialog').addClass('credit-card-form-active');
         $('.modal-donation ').find('#section_form_donatur').removeClass('col-md-12');
         $('.modal-donation ').find('#section_form_donatur').addClass('col-md-6');
+      } else if ($(this).val() == 'transfer') {
+        $('#wrap_va_banks').css('display', 'none');
+        $('#credit_card_form').css('display', 'none');
+        $('.modal-donation ').find('.modal-dialog').removeClass('credit-card-form-active');
+        $('.modal-donation ').find('#section_form_donatur').removeClass('col-md-6');
+        $('.modal-donation ').find('#section_form_donatur').addClass('col-md-12');
       }
     });
   });
