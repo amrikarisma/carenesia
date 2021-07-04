@@ -84,10 +84,10 @@ if (isset($_POST['payment_method'])) {
 
         $manual = [
             'status'    => 'PENDING',
-            'bank_merchant'      => 'BCA',
+            'bank_merchant'      => get_field('manual')['bank'][0]['nama_bank'],
             'name'      => $name,
-            'name_merchant'      => 'YAYASAN NUSA KIBAR INDONESIA',
-            'no_rekening_merchant'   => '12345678910',
+            'name_merchant'      => get_field('manual')['bank'][0]['atas_nama'],
+            'no_rekening_merchant'   => get_field('manual')['bank'][0]['no_rekening'],
             'nominal'       => $nominal,
             'external_id'   => $_SESSION['external_id']
         ];
