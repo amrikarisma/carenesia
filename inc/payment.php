@@ -48,6 +48,7 @@ if (!function_exists('wpcfu_output_file_upload_form')) {
 
         // Output the nonce field
         $html .= wp_nonce_field('upload_wpcfu_file', 'wpcfu_nonce', true, false);
+        $html .= '<br>';
 
         $html .= '<button type="submit" name="submit_wpcfu_form" class="btn btn-primary">';
         $html .= esc_html__('Upload', 'theme-text-domain');
