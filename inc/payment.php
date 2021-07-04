@@ -73,9 +73,6 @@ if (!function_exists('wpcfu_handle_file_upload')) {
     {
         global $wp;
 
-        // echo json_encode($warning_count);
-        // die();
-        // Stop immidiately if form is not submitted
         if (!isset($_POST['submit_wpcfu_form'])) {
             return;
         }
