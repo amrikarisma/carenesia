@@ -7349,4 +7349,14 @@ jQuery(function ($) {
     event.preventDefault();
     $(this).ekkoLightbox();
   });
+  $(window).scroll(function () {
+    /* affix after scrolling 100px */
+    if ($(document).scrollTop() > 100) {
+      $('#main-nav').css({
+        'background-color': 'rgba(0,0,0)'
+      });
+    } else {
+      $('#main-nav').removeAttr("style");
+    }
+  });
 });
