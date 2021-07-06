@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '6ddddb846655ef2df6e9d5d764079249ece4e0df',
+    'reference' => '87552f22fbcb8b1f00d1b9779865c089dfd8a201',
     'name' => 'understrap/understrap',
   ),
   'versions' => 
@@ -87,6 +87,15 @@
       array (
         0 => '*',
       ),
+    ),
+    'nesbot/carbon' => 
+    array (
+      'pretty_version' => '2.50.0',
+      'version' => '2.50.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f47f17d17602b2243414a44ad53d9f8b9ada5fdb',
     ),
     'php-parallel-lint/php-parallel-lint' => 
     array (
@@ -206,6 +215,58 @@
       ),
       'reference' => 'ffced0d2c8fa8e6cdc4d695a743271fab6c38625',
     ),
+    'symfony/deprecation-contracts' => 
+    array (
+      'pretty_version' => 'v2.4.0',
+      'version' => '2.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5f38c8804a9e97d23e0c8d63341088cd8a22d627',
+    ),
+    'symfony/polyfill-mbstring' => 
+    array (
+      'pretty_version' => 'v1.23.0',
+      'version' => '1.23.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2df51500adbaebdc4c38dea4c89a2e131c45c8a1',
+    ),
+    'symfony/polyfill-php80' => 
+    array (
+      'pretty_version' => 'v1.23.0',
+      'version' => '1.23.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'eca0bf41ed421bed1b57c4958bab16aa86b757d0',
+    ),
+    'symfony/translation' => 
+    array (
+      'pretty_version' => 'v5.3.3',
+      'version' => '5.3.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '380b8c9e944d0e364b25f28e8e555241eb49c01c',
+    ),
+    'symfony/translation-contracts' => 
+    array (
+      'pretty_version' => 'v2.4.0',
+      'version' => '2.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '95c812666f3e91db75385749fe219c5e494c7f95',
+    ),
+    'symfony/translation-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '2.3',
+      ),
+    ),
     'understrap/understrap' => 
     array (
       'pretty_version' => 'dev-develop',
@@ -213,7 +274,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '6ddddb846655ef2df6e9d5d764079249ece4e0df',
+      'reference' => '87552f22fbcb8b1f00d1b9779865c089dfd8a201',
     ),
     'wp-coding-standards/wpcs' => 
     array (

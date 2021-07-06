@@ -178,6 +178,8 @@ if (get_donation('total', $post->ID) && get_field('donation_goals')) {
 						</div>
 						<div class="wrap-donate-btn">
 							<button type="submit" class="btn btn-primary submit">Donasi Sekarang</button>
+							<input type="hidden" name="post_url" value="<?php echo get_the_permalink() ?>">
+							<input type="hidden" name="post_title" value="<?php echo 'Donasi: ' . get_the_title() ?>">
 							<input type="hidden" name="post_id" value="<?php echo $post->ID; ?>">
 							<input type="hidden" name="token_id" value="">
 							<input type="hidden" name="authentication_id" value="">

@@ -8,11 +8,15 @@
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
+require __DIR__ . '/vendor/autoload.php';
+
+use Carbon\Carbon;
 
 if (!session_id()) {
 	session_start();
 }
-
+Carbon::setLocale('id');
+date_default_timezone_set('Asia/Jakarta');
 // UnderStrap's includes directory.
 $understrap_inc_dir = get_template_directory() . '/inc';
 

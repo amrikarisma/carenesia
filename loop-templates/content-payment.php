@@ -8,6 +8,10 @@
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
+
+use Carbon\Carbon;
+
+
 ?>
 
 
@@ -49,7 +53,7 @@ defined('ABSPATH') || exit;
                         <tr>
                             <td>Batas Waktu Pembayaran</td>
                             <td>:</td>
-                            <td><?php echo $args['va']['expiration_date'] ?></td>
+                            <td><?php echo Carbon::parse($args['va']['expiration_date'])->setTimezone('Asia/Jakarta')->isoFormat('DD MMMM YYYY HH:mm:ss') ?></td>
                         </tr>
                         <tr>
                             <td>External ID</td>

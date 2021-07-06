@@ -9,10 +9,13 @@
  * @package UnderStrap
  */
 
+use Carbon\Carbon;
 use SimpleSoftwareIO\QrCode\Generator;
 use Xendit\Payouts;
 use Xendit\Xendit;
 
+// print_r(Carbon::now()->addDay());
+// die();
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 
@@ -67,8 +70,10 @@ if (isset($_GET['invoice']) && $_GET['invoice'] == 'paid') {
 if (isset($_POST['payment_method'])) {
     $nominal = (int)$_POST['nominal'];
     $email = $_POST['email'];
+    $title = $_POST['post_title'];
     $name = $_POST['first_name'] . ' ' . $_POST['last_name'];
     $id_donation = $_POST['_unique_id_donation'];
+    $createInvoice = new Xendit_PG;
 
     if ($_POST['payment_method'] == 'credit_card') {
     } elseif ($_POST['payment_method'] == 'transfer') {
@@ -120,45 +125,67 @@ if (isset($_POST['payment_method'])) {
         }
 
         if ($_SESSION['payment_create']) {
-            $paramsVA = [
-                "external_id" => $_SESSION['external_id'],
-                "bank_code" => $bank,
-                "name" => $name,
-                "expected_amount"   => $nominal
-            ];
+            try {
+                $paramsVA = [
+                    "external_id" => $_SESSION['external_id'],
+                    "bank_code" => $bank,
+                    "name" => $name,
+                    "is_closed"         => true,
+                    "expected_amount"   => $nominal,
+                    "is_single_use"     => true,
+                    "expiration_date"   => Carbon::now()->addDay()->setTimezone('UTC')->toIso8601String()
+                ];
 
-            $createVA = \Xendit\VirtualAccounts::create($paramsVA);
+                $createVA = \Xendit\VirtualAccounts::create($paramsVA);
 
-            $paramsQR = [
-                'external_id' => $_SESSION['external_id'],
-                'type' => 'STATIC',
-                'callback_url' => site_url('/pembayaran/?qr=webhook'),
-                'amount' => $nominal,
-            ];
+                $paramsQR = [
+                    'external_id' => $_SESSION['external_id'],
+                    'type' => 'STATIC',
+                    'callback_url' => site_url('/pembayaran/?qr=webhook'),
+                    'amount' => $nominal,
+                ];
 
-            $qr_code = \Xendit\QRCode::create($paramsQR);
+                $qr_code = \Xendit\QRCode::create($paramsQR);
 
-            $qrcode = new Generator;
-            $args = [
-                'qr_code'   => [
-                    'scan'  => $qrcode->size(300)->generate($qr_code['qr_string']),
-                ],
-                'va'        => $createVA
-            ];
+                $qrcode = new Generator;
 
-            $_SESSION['detail_va'] = $args;
+                $args = [
+                    'qr_code'   => [
+                        'scan'  => $qrcode->size(300)->generate($qr_code['qr_string']),
+                    ],
+                    'va'        => $createVA
+                ];
 
-            add_donation([
-                'post_id'   => (int)$_POST['post_id'],
-                'amount'    => (int)$args['va']['expected_amount'],
-                'name'    => $args['va']['name'],
-                'email'    => $email,
-                'request_date'    => current_time('mysql'),
-                'payment_method'    => $_POST['payment_method'],
-                'bank'    => $args['va']['bank_code'],
-                'status'    => $args['va']['status'],
-                'external_id'    => $args['va']['external_id'],
-            ]);
+                $_SESSION['detail_va'] = $args;
+
+                add_donation([
+                    'post_id'   => (int)$_POST['post_id'],
+                    'amount'    => (int)$args['va']['expected_amount'],
+                    'name'    => $args['va']['name'],
+                    'email'    => $email,
+                    'request_date'    => current_time('mysql'),
+                    'payment_method'    => $_POST['payment_method'],
+                    'bank'    => $args['va']['bank_code'],
+                    'status'    => $args['va']['status'],
+                    'external_id'    => $args['va']['external_id'],
+                ]);
+
+
+                $createInvoice->createInvoice([
+                    'external_id' => $_SESSION['external_id'],
+                    'payer_email' => $email,
+                    'description' => $title,
+                    'amount' => $nominal,
+                    'callback_virtual_account_id' => $createVA['id'],
+                    'currency'  => 'IDR',
+                    'payment_methods' => [$createVA['bank_code']],
+                    'success_redirect_url'  => $_POST['post_url'] . '?ref=success_donation',
+                    'failure_redirect_url'  =>  $_POST['post_url'] . '?ref=failed_donation',
+                ]);
+            } catch (\Xendit\Exceptions\ApiException $e) {
+                var_dump($e->getMessage());
+                die();
+            }
         } else {
             $args = $_SESSION['detail_va'];
         }

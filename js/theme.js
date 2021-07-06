@@ -7217,7 +7217,10 @@ jQuery(function ($) {
         'nominal': $form.find('#nominal').val(),
         'authentication_id': d.authentication_id,
         'token_id': d.id,
-        'cc-cvc': $form.find('#cc-cvc').val()
+        'cc-cvc': $form.find('#cc-cvc').val(),
+        'email': $form.find('#email').val(),
+        'title': $form.find('[name=post_title]').val(),
+        'url': $form.find('[name=post_url]').val()
       };
       jQuery.ajax({
         type: "POST",

@@ -60,6 +60,26 @@ $container = get_theme_mod('understrap_container_type');
 <?php wp_footer(); ?>
 <script type="text/javascript">
 	Xendit.setPublishableKey('<?php echo XENDIT_PUBLIC_API_KEY; ?>');
+
+	<?php if (isset($_GET['ref']) && $_GET['ref'] == 'success_donation') : ?>
+		Swal.fire({
+			position: 'top-center',
+			icon: 'success',
+			title: 'Pembayaran Sukses',
+			text: 'Pembayaran donasi anda telah berhasil. Terima Kasih telah berdonasi.',
+			showConfirmButton: true,
+			confirmButtonColor: '#769126',
+		})
+	<?php elseif (isset($_GET['ref']) && $_GET['ref'] == 'failed_donation') : ?>
+		Swal.fire({
+			position: 'top-center',
+			icon: 'error',
+			title: 'Pembayaran Gagal',
+			text: 'Silahkan ulangi lagi beberapa saat.',
+			showConfirmButton: true,
+			confirmButtonColor: '#769126',
+		})
+	<?php endif; ?>
 </script>
 
 </body>

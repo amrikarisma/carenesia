@@ -8,8 +8,8 @@
 
 use Xendit\Balance;
 use Xendit\Xendit;
+use Carbon\Carbon;
 
-require __DIR__ . '/../vendor/autoload.php';
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
@@ -18,39 +18,69 @@ class Xendit_PG
 {
     function __construct()
     {
-        define('XENDIT_API_KEY', 'xnd_development_t0AMdVe0KbcNUIX6DannLBVUx6BonTrCr4UYJAQUa4lcWbjtnyCrRf5nq');
-        define('XENDIT_PUBLIC_API_KEY', 'xnd_public_development_039TJL12Pcug6HJ5f8lphjP0VIYABLanQeMuy89glG7HS4FP3MdsCflAMGBS');
-        Xendit::setApiKey(XENDIT_API_KEY);
-        add_action('wp_ajax_create_charge',  array($this, 'create_charge_credit_card'));
-        add_action('wp_ajax_nopriv_create_charge', array($this, 'create_charge_credit_card'));
-        add_action('wp_ajax_capture_charge',  array($this, 'capture_charge_credit_card'));
-        add_action('wp_ajax_nopriv_capture_charge', array($this, 'capture_charge_credit_card'));
-        add_action('wp_ajax_get_charge',  array($this, 'get_charge_credit_card'));
-        add_action('wp_ajax_nopriv_get_charge', array($this, 'get_charge_credit_card'));
+        if (!defined('XENDIT_API_KEY')) {
+            define('XENDIT_API_KEY', 'xnd_development_t0AMdVe0KbcNUIX6DannLBVUx6BonTrCr4UYJAQUa4lcWbjtnyCrRf5nq');
+            define('XENDIT_PUBLIC_API_KEY', 'xnd_public_development_039TJL12Pcug6HJ5f8lphjP0VIYABLanQeMuy89glG7HS4FP3MdsCflAMGBS');
+            Xendit::setApiKey(XENDIT_API_KEY);
+            add_action('wp_ajax_create_charge',  array($this, 'create_charge_credit_card'));
+            add_action('wp_ajax_nopriv_create_charge', array($this, 'create_charge_credit_card'));
+            add_action('wp_ajax_capture_charge',  array($this, 'capture_charge_credit_card'));
+            add_action('wp_ajax_nopriv_capture_charge', array($this, 'capture_charge_credit_card'));
+            add_action('wp_ajax_get_charge',  array($this, 'get_charge_credit_card'));
+            add_action('wp_ajax_nopriv_get_charge', array($this, 'get_charge_credit_card'));
+        }
     }
 
     public function create_charge_credit_card()
     {
-        $params = [
-            'token_id' => $_POST['token_id'],
-            'external_id' => 'card_' . time(),
-            'authentication_id' => $_POST['authentication_id'],
-            'amount' => $_POST['nominal'],
-            'card_cvn' => $_POST['cc-cvc'],
-            'capture' => false
-        ];
+        try {
 
-        $createCharge = \Xendit\Cards::create($params);
+            $params = [
+                'token_id' => $_POST['token_id'],
+                'external_id' => 'card_' . time(),
+                'authentication_id' => $_POST['authentication_id'],
+                'amount' => $_POST['nominal'],
+                'card_cvn' => $_POST['cc-cvc'],
+                'capture' => false
+            ];
+            $createCharge = \Xendit\Cards::create($params);
+
+            if ($createCharge['status'] == 'CAPTURED') {
+                $this->createInvoice([
+                    'external_id' => $params['external_id'],
+                    'payer_email' => $_POST['email'],
+                    'description' => $_POST['title'],
+                    'amount' => $_POST['nominal'],
+                    'currency'  => 'IDR',
+                    'payment_methods' => ['CREDIT_CARD'],
+                    'success_redirect_url'  => $_POST['post_url'] . '?ref=success_donation',
+                    'failure_redirect_url'  =>  $_POST['post_url'] . '?ref=failed_donation',
+                ]);
+            }
+        } catch (\Xendit\Exceptions\ApiException $e) {
+            var_dump($e->getMessage());
+            die();
+        }
+
         echo json_encode($createCharge);
         wp_die();
     }
 
     public function capture_charge_credit_card()
     {
-        $id = $_POST['id'];
-        $params = ['amount' => (int)$_POST['amount']];
+        try {
 
-        $captureCharge = \Xendit\Cards::capture($id, $params);
+            $id = $_POST['id'];
+            $params = ['amount' => (int)$_POST['amount']];
+
+            $captureCharge = \Xendit\Cards::capture($id, $params);
+            if ($captureCharge['status'] == 'CAPTURED') {
+            }
+        } catch (\Xendit\Exceptions\ApiException $e) {
+            var_dump($e->getMessage());
+            die();
+        }
+
         echo json_encode($captureCharge);
         wp_die();
     }
@@ -63,7 +93,19 @@ class Xendit_PG
         echo json_encode($getCharge);
         wp_die();
     }
+
+    public function createInvoice($params)
+    {
+        try {
+            $createInvoice = \Xendit\Invoice::create($params);
+            if (!in_array('CREDIT_CARD', $params['payment_methods']))
+                if (isset($createInvoice['invoice_url'])) {
+                    wp_redirect($createInvoice['invoice_url'], 301);
+                    die();
+                }
+        } catch (\Xendit\Exceptions\ApiException $e) {
+            var_dump($e->getMessage());
+        }
+    }
 }
-
-
 $pg = new Xendit_PG();
