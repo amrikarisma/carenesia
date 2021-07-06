@@ -53,8 +53,8 @@ class Xendit_PG
                     'amount' => $_POST['nominal'],
                     'currency'  => 'IDR',
                     'payment_methods' => ['CREDIT_CARD'],
-                    'success_redirect_url'  => $_POST['post_url'] . '?ref=success_donation',
-                    'failure_redirect_url'  =>  $_POST['post_url'] . '?ref=failed_donation',
+                    'success_redirect_url'  => $_POST['url'] . '?ref=success_donation',
+                    'failure_redirect_url'  =>  $_POST['url'] . '?ref=failed_donation',
                 ]);
             }
         } catch (\Xendit\Exceptions\ApiException $e) {
