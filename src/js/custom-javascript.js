@@ -190,14 +190,14 @@ jQuery(function($) {
                     $('.modal-donation').modal('hide');
                     if(data.status == 'CAPTURED') {
                         Swal.fire(
-                            'Pembayaran telah berhasil!',
-                            'Tagihan berhasil dibuat di kartu kredit anda!',
+                            'Pembayaran Sukses',
+                            'Pembayaran donasi anda telah berhasil. Terima Kasih telah berdonasi.',
                             'success'
                           )
                     } else {
                         Swal.fire(
                             'Pembayaran Gagal!',
-                            'Periksa kembali kartu kredit anda!',
+                            'Periksa kartu kredit anda dan coba kembali nanti.',
                             'error'
                           )
                     }
