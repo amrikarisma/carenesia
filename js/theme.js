@@ -7351,12 +7351,22 @@ jQuery(function ($) {
   });
   $(window).scroll(function () {
     /* affix after scrolling 100px */
-    if ($(document).scrollTop() > 100) {
+    if ($(document).scrollTop() > 1) {
       $('#main-nav').css({
         'background-color': 'rgba(0,0,0)'
       });
     } else {
       $('#main-nav').removeAttr("style");
     }
+  });
+  $('#navbarNavDropdown').on('show.bs.collapse', function () {
+    console.log('huft');
+    $('.navbar').removeClass('dark-transparant');
+    $('.navbar').addClass('bg-black');
+  });
+  $('#navbarNavDropdown').on('hidden.bs.collapse', function () {
+    console.log('huft');
+    $('.navbar').removeClass('bg-black');
+    $('.navbar').addClass('dark-transparant');
   });
 });
