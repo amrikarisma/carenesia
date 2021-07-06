@@ -45,7 +45,7 @@ class Xendit_PG
             ];
             $createCharge = \Xendit\Cards::create($params);
 
-            if ($createCharge['status'] == 'CAPTURED') {
+            if ($createCharge['status'] == 'AUTHORIZED') {
                 $this->createInvoice([
                     'external_id' => $params['external_id'],
                     'payer_email' => $_POST['email'],
