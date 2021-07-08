@@ -76,6 +76,47 @@ if (isset($_POST['payment_method'])) {
     $createInvoice = new Xendit_PG;
 
     if ($_POST['payment_method'] == 'credit_card') {
+        $external_id = "card-" . strtotime(date_i18n('Y-m-d H:i:s'));
+
+        if (empty($_SESSION['external_id']) || empty($_SESSION['nominal']) || $_SESSION['nominal'] != $nominal || empty($_SESSION['id_donation']) || $_SESSION['id_donation'] != $id_donation) {
+            $_SESSION['id_donation'] = $id_donation;
+            $_SESSION['nominal'] = $nominal;
+            $_SESSION['external_id'] = $external_id;
+            $_SESSION['payment_create'] = true;
+        } else {
+            $_SESSION['payment_create'] = false;
+        }
+
+        if ($_SESSION['payment_create']) {
+            try {
+                add_donation([
+                    'post_id'   => (int)$_POST['post_id'],
+                    'amount'    => (int)$_SESSION['nominal'],
+                    'name'    => $name,
+                    'email'    => $email,
+                    'request_date'    => current_time('mysql'),
+                    'payment_method'    => $_POST['payment_method'],
+                    'bank'    => 'CREDIT CARD',
+                    'status'    => 'PENDING',
+                    'external_id'    => $_SESSION['external_id'],
+                ]);
+
+
+                $createInvoice->createInvoice([
+                    'external_id' => $_SESSION['external_id'],
+                    'payer_email' => $email,
+                    'description' => $title,
+                    'amount' => $nominal,
+                    'currency'  => 'IDR',
+                    'payment_methods' => ['CREDIT_CARD'],
+                    'success_redirect_url'  => $_POST['post_url'] . '?ref=success_donation',
+                    'failure_redirect_url'  =>  $_POST['post_url'] . '?ref=failed_donation',
+                ]);
+            } catch (\Xendit\Exceptions\ApiException $e) {
+                var_dump($e->getMessage());
+                die();
+            }
+        }
     } elseif ($_POST['payment_method'] == 'transfer') {
 
         // Manual bank transfer

@@ -135,7 +135,7 @@ if (get_donation('total', $post->ID) && get_field('donation_goals')) {
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6" id="credit_card_form" style="display: none;">
+							<!-- <div class="col-md-6" id="credit_card_form" style="display: none;">
 								<div class="card">
 									<div class="card-header">
 										<div class="row">
@@ -174,7 +174,7 @@ if (get_donation('total', $post->ID) && get_field('donation_goals')) {
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<div class="wrap-donate-btn">
 							<button type="submit" class="btn btn-primary submit">Donasi Sekarang</button>

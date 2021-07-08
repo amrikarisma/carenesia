@@ -22,6 +22,8 @@ class Xendit_PG
             define('XENDIT_API_KEY', 'xnd_development_t0AMdVe0KbcNUIX6DannLBVUx6BonTrCr4UYJAQUa4lcWbjtnyCrRf5nq');
             define('XENDIT_PUBLIC_API_KEY', 'xnd_public_development_039TJL12Pcug6HJ5f8lphjP0VIYABLanQeMuy89glG7HS4FP3MdsCflAMGBS');
             Xendit::setApiKey(XENDIT_API_KEY);
+            add_action('wp_ajax_create_invoice',  array($this, 'createInvoice'));
+            add_action('wp_ajax_nopriv_create_invoice', array($this, 'createInvoice'));
             add_action('wp_ajax_create_charge',  array($this, 'create_charge_credit_card'));
             add_action('wp_ajax_nopriv_create_charge', array($this, 'create_charge_credit_card'));
             add_action('wp_ajax_capture_charge',  array($this, 'capture_charge_credit_card'));
@@ -52,7 +54,7 @@ class Xendit_PG
                     'description' => $_POST['title'],
                     'amount' => $_POST['nominal'],
                     'currency'  => 'IDR',
-                    'payment_methods' => ['CREDIT_CARD'],
+                    'payment_methods' => [$createCharge['card_type'] . '_CARD'],
                     'success_redirect_url'  => $_POST['url'] . '?ref=success_donation',
                     'failure_redirect_url'  =>  $_POST['url'] . '?ref=failed_donation',
                 ]);
@@ -98,11 +100,10 @@ class Xendit_PG
     {
         try {
             $createInvoice = \Xendit\Invoice::create($params);
-            if (!in_array('CREDIT_CARD', $params['payment_methods']))
-                if (isset($createInvoice['invoice_url'])) {
-                    wp_redirect($createInvoice['invoice_url'], 301);
-                    die();
-                }
+            if (isset($createInvoice['invoice_url'])) {
+                wp_redirect($createInvoice['invoice_url'], 301);
+                die();
+            }
         } catch (\Xendit\Exceptions\ApiException $e) {
             var_dump($e->getMessage());
         }

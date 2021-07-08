@@ -31,38 +31,38 @@ jQuery(function($) {
     });
     $(function() {
 
-		$('[data-numeric]').payment('restrictNumeric');
-		$('.cc-number').payment('formatCardNumber');
-		$('.cc-exp').payment('formatCardExpiry');
-		$('.cc-cvc').payment('formatCardCVC');
-		$.fn.toggleInputError = function(erred) {
-            console.log(erred);
-			this.toggleClass('is-invalid', erred);
-			return this;
-		};
-        var $form = $('#payment-form');
+		// $('[data-numeric]').payment('restrictNumeric');
+		// $('.cc-number').payment('formatCardNumber');
+		// $('.cc-exp').payment('formatCardExpiry');
+		// $('.cc-cvc').payment('formatCardCVC');
+		// $.fn.toggleInputError = function(erred) {
+        //     console.log(erred);
+		// 	this.toggleClass('is-invalid', erred);
+		// 	return this;
+		// };
+        // var $form = $('#payment-form');
 
-		$form.submit(function(e) {
+		// $form.submit(function(e) {
 
-            if($('#payment_method').val() == 'credit_card' && $('[name=token_id]').val() == '') {
-                e.preventDefault();
-                hideResults();
-                $('.preloader').fadeIn();
-                var cardType = $.payment.cardType($('.cc-number').val());
-                $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
-                $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
-                $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
-                $('.cc-brand').text(cardType);
-                $('.validation').removeClass('text-danger text-success');
-                $('.validation').addClass($('.has-error').length ? 'text-danger' : 'text-success');
+        //     if($('#payment_method').val() == 'credit_card' && $('[name=token_id]').val() == '') {
+        //         e.preventDefault();
+        //         hideResults();
+        //         $('.preloader').fadeIn();
+        //         var cardType = $.payment.cardType($('.cc-number').val());
+        //         $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
+        //         $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
+        //         $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
+        //         $('.cc-brand').text(cardType);
+        //         $('.validation').removeClass('text-danger text-success');
+        //         $('.validation').addClass($('.has-error').length ? 'text-danger' : 'text-success');
 
-                var tokenData = getTokenData();
+        //         var tokenData = getTokenData();
 
-                Xendit.card.createToken(tokenData, xenditResponseHandler);
-                // Prevent the form from being submitted:
-                return false;
-            }
-		});
+        //         Xendit.card.createToken(tokenData, xenditResponseHandler);
+        //         // Prevent the form from being submitted:
+        //         return false;
+        //     }
+		// });
 
         function xenditResponseHandler(err, creditCardToken) {
             console.log('err: ',err);
@@ -272,22 +272,10 @@ jQuery(function($) {
             console.log($(this).val());
             if($(this).val() == 'bank') {
                 $('#wrap_va_banks').css('display','block');
-                $('#credit_card_form').css('display','none');
-                $('.modal-donation ').find('.modal-dialog').removeClass('credit-card-form-active');
-                $('.modal-donation ').find('#section_form_donatur').removeClass('col-md-6');
-                $('.modal-donation ').find('#section_form_donatur').addClass('col-md-12');
             } else if($(this).val() == 'credit_card') {
                 $('#wrap_va_banks').css('display','none');
-                $('#credit_card_form').css('display','block');
-                $('.modal-donation ').find('.modal-dialog').addClass('credit-card-form-active');
-                $('.modal-donation ').find('#section_form_donatur').removeClass('col-md-12');
-                $('.modal-donation ').find('#section_form_donatur').addClass('col-md-6');
             } else if($(this).val() == 'transfer') {
                 $('#wrap_va_banks').css('display','none');
-                $('#credit_card_form').css('display','none');
-                $('.modal-donation ').find('.modal-dialog').removeClass('credit-card-form-active');
-                $('.modal-donation ').find('#section_form_donatur').removeClass('col-md-6');
-                $('.modal-donation ').find('#section_form_donatur').addClass('col-md-12');
             }
         });
     });
